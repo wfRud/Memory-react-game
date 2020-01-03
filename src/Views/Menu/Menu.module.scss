@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75vw;
+    height: 90vh;
+
+    .title {
+        font-size: 96px;
+        color: #F9B9B7;
+    }
+
+    .actionButton {
+        width: 224px;
+        height: 79px;
+        color: #fff;
+        background-color: #F9B9B7;
+        border: 0;
+        border-radius: 35px;
+        font-size: 36px;
+        font-family: 'Asap', sans-serif;
+        margin: 0 35px;
+        outline: none;
+        transition: .2s;
+
+        &:hover {
+            color: #F9B9B7;
+            background-color: #FFF;
+            cursor: pointer;
+            box-shadow: 0 0 0 6px #F9B9B7;
+        }
+    }
+}
