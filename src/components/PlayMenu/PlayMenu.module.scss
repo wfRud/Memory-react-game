@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .iconCnt {
+        display: flex;
+        justify-content: center;
+
+        .icon{
+            transition: .2s;
+            &:hover {
+                opacity: .5;
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+        
+    }
+    .timer {
+        font-size: 72px;
+        color: #D6B3EB;
+        font-weight: 500;
+    }
+    .counter {
+    font-size: 36px;
+    
+    }
+
+    .quitBtn {
+        width: 208px;
+        height: 52px;
+        color: #fff;
+        background-color: #D6B3EB;
+        border: 0;
+        border-radius: 35px;
+        font-size: 36px;
+        font-family: 'Asap', sans-serif;
+        margin: 0 35px;
+        outline: none;
+        transition: .2s;
+
+        &:hover {
+            color: #D6B3EB;
+            background-color: #FFF;
+            cursor: pointer;
+            box-shadow: 0 0 0 6px #D6B3EB;
+        }
+    }
+}

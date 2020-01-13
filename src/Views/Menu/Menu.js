@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import Form from "../../components/Form/Form";
-import DifficultLevels from "../../components/DifficultLevels/DifficultLevels";
+import Variation from "../../components/Variation/Variation";
+import { Redirect } from "react-router-dom";
 import styles from "./Menu.module.scss";
+import { connect } from "react-redux";
+import { variantActions as actions } from "../../app/variations/duck";
 
 class Menu extends Component {
   state = {
     name: "",
     email: "",
-    levels: [16, 36, 64],
-    level: null
+    level: null,
+    start: false
   };
 
   handleInputChange = e => {
@@ -19,24 +22,42 @@ class Menu extends Component {
   };
 
   setLevel = e => {
-    // console.log(e.target.value);
+    this.props.set(e.target.value);
+  };
+
+  handleStart = () => {
+    // console.log(this);
     this.setState({
-      level: Number(e.target.value)
+      start: true
     });
+  };
+  renderRedirect = () => {
+    if (this.state.start) {
+      return <Redirect to="/gamePlay" />;
+    }
   };
   render() {
     return (
       <div className={styles.wrapper}>
         <h1 className={styles.title}>MEMORY</h1>
         <Form value={this.state} change={this.handleInputChange} />
-        <DifficultLevels levels={this.state.levels} change={this.setLevel} />
+        <Variation change={this.setLevel} />
         <div>
-          <button className={styles.actionButton}>Start</button>
+          <button
+            className={styles.actionButton}
+            onClick={this.handleStart.bind(this)}
+          >
+            Start
+          </button>
           <button className={styles.actionButton}>Rank</button>
         </div>
+        {this.renderRedirect()}
       </div>
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  set: item => dispatch(actions.setLevel(item))
+});
 
-export default Menu;
+export default connect(null, mapDispatchToProps)(Menu);

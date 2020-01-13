@@ -1,0 +1,34 @@
+.levelTile {
+    position: relative;
+    min-width: 180px;
+    min-height: 180px;
+
+    & [type="radio"] {
+        display: none;
+    }
+
+    .checkedInput {
+        height: 100%;
+        width: 100%;
+        margin: 0 35px;
+        padding: 10px 15px;
+        font-size: 96px;
+        background-color: #F9B9B7;
+        color: #fff;
+        border-radius: 35px;
+        transition: .2s;
+
+        &:hover {
+            background-color: #fff;
+            color: #F9B9B7;
+            cursor: pointer;
+        }
+    }
+
+    [type="radio"]:checked+.checkedInput {
+        background-color: #fff;
+        color: #F9B9B7;
+        box-shadow: 0 0 0 6px #F9B9B7;
+    }
+
+}

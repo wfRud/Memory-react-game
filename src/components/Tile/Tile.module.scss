@@ -1,36 +1,18 @@
-.levelTile {
-    position: relative;
-    min-width: 180px;
-    min-height: 180px;
+.Tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  margin: 20px 20px;
+  background-color: #f9b9b7;
+  border-radius: 35px;
+  transition: transform 0.3s, box-shadow 0.3s;
 
-
-
-    & [type="radio"] {
-        display: none;
-    }
-
-    .checkedInput {
-        height: 100%;
-        width: 100%;
-        margin: 0 35px;
-        padding: 10px 15px;
-        font-size: 96px;
-        background-color: #F9B9B7;
-        color: #fff;
-        border-radius: 35px;
-        transition: .2s;
-
-        &:hover {
-            background-color: #fff;
-            color: #F9B9B7;
-            cursor: pointer;
-        }
-    }
-
-    [type="radio"]:checked+.checkedInput {
-        background-color: #fff;
-        color: #F9B9B7;
-        box-shadow: 0 0 0 6px #F9B9B7;
-    }
-
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 0 5px #fff;
+  }
 }
