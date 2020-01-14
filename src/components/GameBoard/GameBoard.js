@@ -72,9 +72,9 @@ class GameBoard extends Component {
     this.setState({
       selected
     });
-    console.log(numbers, randomNumbers, selected, level);
+    // console.log(numbers, randomNumbers, selected, level);
   };
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.drawImages(this.props.variant);
   }
 
@@ -93,7 +93,7 @@ class GameBoard extends Component {
 }
 
 const mapStateToProps = state => ({
-  variant: state.variant
+  variant: state.variants.variant
 });
 
 export default connect(mapStateToProps, {})(GameBoard);

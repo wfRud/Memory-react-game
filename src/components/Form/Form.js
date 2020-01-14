@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./Form.module.scss";
+import { connect } from "react-redux";
 
 const Form = props => {
-  const { name, email } = props.value;
+  const { change, valid } = props;
+  const { nameError, emailError } = props.error;
 
   return (
     <div className={styles.wrapper}>
@@ -10,19 +12,38 @@ const Form = props => {
         type="text"
         placeholder="put your name"
         name="name"
-        value={name}
-        onChange={props.change}
+        onChange={change}
+        value={props.userName}
+        autoComplete="off"
+        onBlur={valid}
+        className={styles.inputsField}
+        id="name"
       />
+      {nameError && props.userName !== "" ? (
+        <div className={styles.errorMessage}>
+          Name should starts from Big letter and has minimum 4 letters
+        </div>
+      ) : null}
+
       <input
         type="text"
         placeholder="put your email"
         name="email"
-        value={email}
-        onChange={props.change}
+        onChange={change}
+        onBlur={valid}
         autoComplete="off"
+        className={styles.inputsField}
       />
+      {emailError && props.userEmail !== "" ? (
+        <div className={styles.errorMessage}>Invalid Email</div>
+      ) : null}
     </div>
   );
 };
 
-export default Form;
+const mapStateToProps = state => ({
+  userName: state.user.name,
+  userEmail: state.user.email
+});
+
+export default connect(mapStateToProps, {})(Form);

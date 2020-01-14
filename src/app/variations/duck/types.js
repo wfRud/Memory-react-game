@@ -1,3 +1,4 @@
 const SET_LEVELS = "SET_LEVELS";
+const CLEAR_LEVELS = "CLEAR_LEVELS";
 
-export default { SET_LEVELS };
+export default { SET_LEVELS, CLEAR_LEVELS };

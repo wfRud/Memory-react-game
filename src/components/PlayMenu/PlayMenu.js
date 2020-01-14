@@ -19,12 +19,6 @@ class PlayMenu extends Component {
       });
     }, 10);
   }
-  componentDidMount() {
-    this.handleTimer();
-  }
-  // componentWillMount() {
-  //   clearInterval(this.timer);
-  // }
 
   handlePause() {
     clearInterval(this.timer);
@@ -33,23 +27,22 @@ class PlayMenu extends Component {
     this.handleTimer();
   }
 
-  quitHandle(e) {
-    e.preventDefault();
+  quitHandle() {
+    clearInterval(this.timer);
     this.setState({
       redirect: true
     });
+    console.log(this.state.redirect);
   }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/" />;
-    }
-  };
+  UNSAFE_componentWillMount() {
+    this.handleTimer();
+  }
   render() {
     return (
       <div className={styles.wrapper}>
         <div className={styles.timer}>
-          {this.state.time < 10 ? this.state.time : this.state.time / 100}
+          {this.state.time < 10 ? `0${this.state.time}` : this.state.time / 100}
         </div>
         <p className={styles.counter}>{this.state.steps} steps</p>
         <div className={styles.iconCnt}>
@@ -74,10 +67,10 @@ class PlayMenu extends Component {
             className={styles.icon}
           />
         </div>
-        {this.renderRedirect()}
         <button className={styles.quitBtn} onClick={this.quitHandle.bind(this)}>
           QUIT
         </button>
+        {this.state.redirect && <Redirect to="/" />}
       </div>
     );
   }

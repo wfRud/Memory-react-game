@@ -4,7 +4,7 @@
     justify-content: space-around;
     height: 200px;
 
-    input {
+    .inputsField {
         width: 397px;
         height: 76px;
         background-color: transparent;
@@ -20,7 +20,36 @@
         &:focus {
             box-shadow: 0 0 5px 8px rgba(#F9B9B7, .5);
         }
+
+        &.correct {
+            border: 3px solid rgb(153, 226, 150);
+        }
+
+        &.wrong {
+            border: 3px solid rgb(226, 150, 150);
+        }
     }
 
+    .errorMessage {
+        font-weight: 700;
+        color: rgb(207, 87, 87);
+        text-align: center;
+        margin: 5px 0;
+        letter-spacing: .05em;
+        animation: showMessage .4s;
+    }
 
+    .errorMessage .inputsField {
+        border: 3px solid rgb(226, 150, 150);
+    }
+
+    @keyframes showMessage {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1
+        }
+    }
 }

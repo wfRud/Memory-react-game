@@ -8,7 +8,7 @@ const Variation = props => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Select Difficult level</h3>
-      {props.variations.map((level, index) => (
+      {props.variants.map((level, index) => (
         <Variant
           content={level}
           key={index}
@@ -21,7 +21,7 @@ const Variation = props => {
 };
 
 const mapStateToProps = state => ({
-  variations: state.variations
+  variants: state.variants.variations
 });
 
 export default connect(mapStateToProps, {})(Variation);
