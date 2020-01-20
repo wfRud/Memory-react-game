@@ -21,11 +21,6 @@ class Menu extends Component {
     this.props.setLevel(Number(e.target.value));
   };
 
-  clearStore = () =>
-    setTimeout(() => {
-      return this.props.clearLevel() && this.props.clearFields();
-    }, 2000);
-
   toggleStart = () => {
     if (
       !this.state.nameError &&
@@ -34,7 +29,7 @@ class Menu extends Component {
       this.props.userName !== "" &&
       this.props.userEmail !== ""
     ) {
-      this.props.toggleStart(this.props.userStart);
+      this.props.toggleStart();
     }
   };
 
@@ -54,6 +49,9 @@ class Menu extends Component {
     }
   };
 
+  componentWillUnmount() {
+    this.props.toggleStart();
+  }
   render() {
     const { userStart } = this.props;
     return (
@@ -81,7 +79,8 @@ const mapDispatchToProps = dispatch => ({
   clearLevel: () => dispatch(variantActions.clearLevels()),
   setField: (item, value) => dispatch(userActions.setField(item, value)),
   clearFields: () => dispatch(userActions.clearFields()),
-  toggleStart: item => dispatch(userActions.toggleStart(item))
+  toggleStart: () => dispatch(userActions.toggleStart()),
+  toggleQuit: () => dispatch(userActions.toggleQuit())
 });
 
 const mapStateToProps = state => ({

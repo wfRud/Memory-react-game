@@ -59,6 +59,7 @@ class GameBoard extends Component {
       let randomImg = this.state.images[item];
       let randomImg2 = this.state.images[item];
       selected.push(randomImg, randomImg2);
+      return selected;
     });
 
     let counter = selected.length;
@@ -72,8 +73,12 @@ class GameBoard extends Component {
     this.setState({
       selected
     });
-    // console.log(numbers, randomNumbers, selected, level);
   };
+  matchCards = () => {
+    console.log(this.props.compare[0], this.props.compare[1]);
+    return this.props.compare[0] === this.props.compare[1] ? true : false;
+  };
+
   componentDidMount() {
     this.drawImages(this.props.variant);
   }
@@ -81,10 +86,14 @@ class GameBoard extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h1>game-board</h1>
         <div className={styles.tileWrapper}>
           {this.state.selected.map((item, index) => (
-            <Tile name={item} key={index} id={index} />
+            <Tile
+              name={item}
+              key={index}
+              id={index}
+              matchCard={this.matchCards}
+            />
           ))}
         </div>
       </div>
@@ -93,7 +102,10 @@ class GameBoard extends Component {
 }
 
 const mapStateToProps = state => ({
-  variant: state.variants.variant
+  variant: state.variants.variant,
+  clicker: state.user.clicker,
+  solved: state.user.solved,
+  compare: state.user.compare
 });
 
 export default connect(mapStateToProps, {})(GameBoard);
