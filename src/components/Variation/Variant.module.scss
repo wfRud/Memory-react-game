@@ -1,7 +1,5 @@
 .levelTile {
     position: relative;
-    min-width: 180px;
-    min-height: 180px;
 
     & [type="radio"] {
         display: none;
@@ -10,13 +8,20 @@
     .checkedInput {
         height: 100%;
         width: 100%;
-        margin: 0 35px;
         padding: 10px 15px;
-        font-size: 96px;
+        font-size: 5rem;
         background-color: #F9B9B7;
         color: #fff;
         border-radius: 35px;
         transition: .2s;
+
+        @media(min-width: 320px)and(max-width: 499px) {
+            font-size: 3.5rem;
+        }
+
+        @media(min-width: 500px)and(max-width: 789px) {
+            font-size: 4rem;
+        }
 
         &:hover {
             background-color: #fff;

@@ -2,10 +2,27 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 200px;
+    width: 40%;
+    height: 250px;
+
+    @media(min-width: 320px)and(max-width: 499px) {
+        width: 90%;
+    }
+
+    @media(min-width: 500px)and(max-width: 789px) {
+        width: 70%;
+    }
+
+    @media(min-width: 790px) and (max-width: 1025px) {
+        width: 80%;
+    }
+
+    @media(min-width: 1026px) and (max-width: 1240px) {
+        width: 60%;
+    }
 
     .inputsField {
-        width: 397px;
+        max-width: 100%;
         height: 76px;
         background-color: transparent;
         border: 3px solid #F9B9B7;

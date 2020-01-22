@@ -63,7 +63,7 @@ class Menu extends Component {
           error={this.state}
         />
         <Variation change={this.setLevel} />
-        <div>
+        <div className={styles.button_wrapper}>
           <button className={styles.actionButton} onClick={this.toggleStart}>
             Start
           </button>

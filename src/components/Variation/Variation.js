@@ -8,14 +8,16 @@ const Variation = props => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Select Difficult level</h3>
-      {props.variants.map((level, index) => (
-        <Variant
-          content={level}
-          key={index}
-          change={props.change}
-          index={index}
-        />
-      ))}
+      <div className={styles.variant_Cnt}>
+        {props.variants.map((level, index) => (
+          <Variant
+            content={level}
+            key={index}
+            change={props.change}
+            index={index}
+          />
+        ))}
+      </div>
     </div>
   );
 };

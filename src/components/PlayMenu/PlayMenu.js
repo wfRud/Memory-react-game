@@ -5,12 +5,16 @@ import styles from "./PlayMenu.module.scss";
 import SVGIcon from "../Tile/SVGIcon";
 import { userActions } from "../../app/user/duck";
 import { variantActions } from "../../app/variations/duck";
+import Actions from "../Actions/Actions";
+import Pause from "../Actions/Pause";
 
 class PlayMenu extends Component {
   state = {
     time: 0,
+    timeStart: true,
     pause: false,
-    sound: false
+    sound: false,
+    confirm: false
   };
 
   handleTimer = () => {
@@ -23,18 +27,43 @@ class PlayMenu extends Component {
 
   handlePause = () => {
     clearInterval(this.timer);
+    this.setState({
+      pause: !this.state.pause,
+      timeStart: false
+    });
+  };
+  dumpPause = () => {
+    this.handleTimer();
+    this.setState({
+      pause: false,
+      timeStart: true
+    });
   };
 
   handlePlay = () => {
-    this.handleTimer();
+    if (this.state.timeStart) {
+      this.handleTimer();
+    } else return;
   };
 
-  quitHandle = () => {
-    this.props.toggleQuit(this.props.userQuit);
+  handleConfirm = () => {
+    this.props.toggleQuit();
     this.props.resetFlipped();
     this.props.resetCompare();
     this.props.resetSolved();
     this.props.resetStep();
+  };
+
+  dumpConfirm = () => {
+    this.setState({
+      confirm: false
+    });
+  };
+
+  quitHandle = () => {
+    this.setState({
+      confirm: true
+    });
   };
 
   clearStore = () => {
@@ -42,9 +71,11 @@ class PlayMenu extends Component {
   };
 
   componentDidMount() {
-    this.handleTimer();
-    // this.props.toggleStart();
+    if (this.state.timeStart) {
+      this.handleTimer();
+    } else clearInterval(this.timer);
   }
+
   componentWillUnmount() {
     clearInterval(this.timer);
     this.clearStore();
@@ -82,6 +113,10 @@ class PlayMenu extends Component {
         <button className={styles.quitBtn} onClick={this.quitHandle}>
           QUIT
         </button>
+        {this.state.pause && <Pause dumpPause={this.dumpPause} />}
+        {this.state.confirm && (
+          <Actions accept={this.handleConfirm} dumpPause={this.dumpPause} />
+        )}
         {this.props.userQuit && <Redirect to="/" />}
       </div>
     );

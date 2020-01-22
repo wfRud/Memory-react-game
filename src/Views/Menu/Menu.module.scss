@@ -4,30 +4,71 @@
     align-items: center;
     width: 75vw;
     height: 90vh;
+    flex-wrap: nowrap;
+
+    @media(max-width: 789px) {
+        width: 100vw;
+        height: 100vh;
+    }
 
     .title {
         font-size: 96px;
         color: #F9B9B7;
+
+        @media(min-width: 320px)and(max-width: 499px) {
+            font-size: 76px
+        }
+
+        @media(min-width: 500px)and(max-width: 789px) {
+            font-size: 86px;
+        }
     }
 
-    .actionButton {
-        width: 224px;
-        height: 79px;
-        color: #fff;
-        background-color: #F9B9B7;
-        border: 0;
-        border-radius: 35px;
-        font-size: 36px;
-        font-family: 'Asap', sans-serif;
-        margin: 0 35px;
-        outline: none;
-        transition: .2s;
+    .button_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 40%;
 
-        &:hover {
-            color: #F9B9B7;
-            background-color: #FFF;
-            cursor: pointer;
-            box-shadow: 0 0 0 6px #F9B9B7;
+        @media(min-width: 635px) and (max-width: 788px) {
+            width: 100%
+        }
+
+        @media(max-width: 789px) {
+            width: 80%;
+        }
+
+        @media(min-width: 790px) and (max-width: 1025px) {
+            width: 80%;
+        }
+
+        @media(min-width: 1026px) and (max-width: 1240px) {
+            width: 70%;
+        }
+
+        @media(min-width: 1241px) and (max-width: 1640px) {
+            width: 60%;
+        }
+
+        .actionButton {
+            width: 224px;
+            height: 79px;
+            color: #fff;
+            background-color: #F9B9B7;
+            border: 0;
+            border-radius: 35px;
+            font-size: 36px;
+            font-family: 'Asap', sans-serif;
+            margin: 0 35px;
+            outline: none;
+            transition: .2s;
+
+            &:hover {
+                color: #F9B9B7;
+                background-color: #FFF;
+                cursor: pointer;
+                box-shadow: 0 0 0 6px #F9B9B7;
+            }
         }
     }
 }
