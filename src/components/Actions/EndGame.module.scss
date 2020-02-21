@@ -21,18 +21,30 @@
         align-items: center;
         width: 35vw;
         height: 40vh;
-        min-width: 230px;
-        max-height: 220px;
+        min-width: 260px;
         background-color: #fff;
         border: 5px solid #F9B9B7;
         border-radius: 35px;
-        cursor: pointer;
+        cursor: default;
 
         .text {
+            margin: 0;
             font-size: 48px;
+            font-weight: 400;
 
-            @media(max-width: 798px) and(min-width: 320px) {
+            @media(max-width: 1200px) and(min-width: 320px) {
                 font-size: 2em;
+                margin: 0 auto;
+            }
+        }
+
+        .result {
+            margin: 0;
+            font-size: 36px;
+            text-align: center;
+
+            @media(max-width: 1200px) and(min-width: 320px) {
+                font-size: 1.5em;
             }
         }
 
@@ -42,28 +54,24 @@
             align-items: center;
             width: 100%;
 
-            .accept,
-            .decline {
+            .accept {
                 width: 3.35em;
                 height: 1em;
                 max-width: 140px;
+                font-size: 32px;
+                line-height: 1em;
+                padding: 5px;
                 background-color: #f9B9B7;
                 border-radius: 35px;
-                color: #ddd;
+                color: #fff;
                 text-align: center;
-                font-size: 48px;
-                line-height: 1.25;
                 transition: .3s;
 
                 &:hover {
                     background-color: #fff;
                     color: #f9B9B7;
                     box-shadow: 0 0 0 5px #F9B9B7;
-                }
-
-                svg {
-                    width: 100%;
-                    height: 100%;
+                    cursor: pointer;
                 }
             }
         }

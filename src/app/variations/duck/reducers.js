@@ -1,7 +1,7 @@
 import types from "./types";
 
 const Initial_Variations = {
-  variations: [16, 32, 64],
+  variations: [16, 36, 64],
   variant: null
 };
 

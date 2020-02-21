@@ -6,7 +6,6 @@ import SVGIcon from "./SVGIcon";
 
 const Tile = props => {
   const [disabled, setDisabled] = useState(false);
-
   const {
     flipped,
     id,
@@ -20,11 +19,9 @@ const Tile = props => {
     resetCompare,
     matchCard
   } = props;
-
   const sameCardClicked = id => flipped.includes(id);
 
   const handleClick = id => {
-    // setDisabled(true);
     if (flipped.length === 0) {
       setFlipped(id);
       setDisabled(false);
@@ -63,7 +60,7 @@ const Tile = props => {
       <div className={styles._frontFace}>
         <SVGIcon name={name} width={"3.5em"} fill={"#000"} />
       </div>
-      <div className={styles._backFace} />
+      <div className={styles._backFace}></div>
     </div>
   );
 };

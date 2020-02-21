@@ -1,0 +1,36 @@
+.iconCnt {
+    display: flex;
+    justify-content: center;
+
+    .icon {
+        transition: .2s;
+
+        &:hover {
+            opacity: .5;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        @media(max-width: 1025px) and (min-width: 796px) {
+            width: 4vw !important;
+            height: 4vw !important;
+        }
+
+        @media(max-width: 620px) and (min-width: 320px) {
+            width: 8vw !important;
+            height: 8vw !important;
+        }
+    }
+
+    @media(max-width: 795px) and (min-width: 320px) {
+        position: absolute;
+        bottom: 0%;
+        left: 5%;
+    }
+
+    @media(max-width: 620px) and (min-width: 320px) {
+        bottom: 5%;
+        left: 5%;
+    }
+
+}

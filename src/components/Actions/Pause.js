@@ -3,28 +3,19 @@ import styles from "./Pause.module.scss";
 import SVGIcon from "../Tile/SVGIcon";
 
 const Pause = props => {
+  const { dumpPause } = props;
   return (
     <div className={styles.wrapper}>
       {" "}
       <SVGIcon
-        name="pause"
-        width={"8%"}
-        height={"8%"}
+        name="play"
+        width={"25%"}
+        height={"25%"}
         className={styles.icon}
         fill={"#fff"}
+        click={dumpPause}
       />
-      <p className={styles.text}>
-        Click{" "}
-        <SVGIcon
-          name="play"
-          width={"8%"}
-          height={"8%"}
-          className={styles.icon}
-          fill={"#fff"}
-          click={props.dumpPause}
-        />{" "}
-        TO BACK
-      </p>
+      <p className={styles.text}>CLICK PLAY TO BACK</p>
     </div>
   );
 };

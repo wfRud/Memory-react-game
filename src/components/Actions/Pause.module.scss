@@ -11,17 +11,19 @@
     height: 100vh;
     background-color: rgba(#56CCF2, .5);
 
+    @media(max-width: 798px) and(min-width: 320px) {
+        z-index: 2;
+    }
+
+    .icon {
+        cursor: pointer;
+    }
+
     .text {
         font-size: 36px;
         font-weight: bold;
         letter-spacing: .1em;
         word-spacing: 10px;
         text-align: center;
-
-        svg {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-        }
     }
 }

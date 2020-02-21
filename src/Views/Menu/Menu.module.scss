@@ -30,12 +30,8 @@
         align-items: center;
         width: 40%;
 
-        @media(min-width: 635px) and (max-width: 788px) {
+        @media(min-width: 320px) and (max-width: 789px) {
             width: 100%
-        }
-
-        @media(max-width: 789px) {
-            width: 80%;
         }
 
         @media(min-width: 790px) and (max-width: 1025px) {
@@ -62,6 +58,13 @@
             margin: 0 35px;
             outline: none;
             transition: .2s;
+
+            @media(min-width: 320px) and (max-width: 500px) {
+                width: 213px;
+                height: 72px;
+                font-size: 28px;
+                margin: 0 15px;
+            }
 
             &:hover {
                 color: #F9B9B7;

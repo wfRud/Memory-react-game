@@ -78,7 +78,18 @@ class GameBoard extends Component {
     console.log(this.props.compare[0], this.props.compare[1]);
     return this.props.compare[0] === this.props.compare[1] ? true : false;
   };
-
+  switchTileWrapperClass = variant => {
+    switch (variant) {
+      case 16:
+        return styles.tileWrapper;
+      case 36:
+        return styles.tileWrapper_medium;
+      case 64:
+        return styles.tileWrapper_large;
+      default:
+        return;
+    }
+  };
   componentDidMount() {
     this.drawImages(this.props.variant);
   }
@@ -86,7 +97,7 @@ class GameBoard extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <div className={styles.tileWrapper}>
+        <div className={this.switchTileWrapperClass(this.props.variant)}>
           {this.state.selected.map((item, index) => (
             <Tile
               name={item}
