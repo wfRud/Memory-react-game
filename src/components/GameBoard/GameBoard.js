@@ -113,7 +113,7 @@ class GameBoard extends Component {
 }
 
 const mapStateToProps = state => ({
-  variant: state.variants.variant,
+  variant: state.game.variant,
   clicker: state.user.clicker,
   solved: state.user.solved,
   compare: state.user.compare

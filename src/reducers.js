@@ -3,7 +3,7 @@ import variantReducer from "./app/variations/duck";
 import userReducer from "./app/user/duck";
 
 const rootReducer = combineReducers({
-  variants: variantReducer,
+  game: variantReducer,
   user: userReducer
 });
 

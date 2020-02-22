@@ -26,7 +26,7 @@ const Variation = props => {
 };
 
 const mapStateToProps = state => ({
-  variants: state.variants.variations
+  variants: state.game.variations
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -63,7 +63,7 @@ const mapStateToProps = state => ({
   userStart: state.user.start,
   nameError: state.user.nameError,
   emailError: state.user.emailError,
-  variant: state.variants.variant
+  variant: state.game.variant
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

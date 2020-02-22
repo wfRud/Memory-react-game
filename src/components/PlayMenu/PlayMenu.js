@@ -61,7 +61,7 @@ const PlayMenu = props => {
 const mapStateToProps = state => ({
   step: state.user.step,
   solved: state.user.solved,
-  variant: state.variants.variant
+  variant: state.game.variant
 });
 const mapDispatchToProps = dispatch => ({
   toggleQuit: () => dispatch(userActions.toggleQuit()),
