@@ -16,6 +16,11 @@ const setSolved = item => ({ type: types.SET_SOLVED, item: item });
 const resetSolved = () => ({ type: types.RESET_SOLVED, solved: [] });
 const toCompare = item => ({ type: types.TO_COMPARE, item: item });
 const resetCompare = () => ({ type: types.RESET_COMPARE, compare: [] });
+const setError = (type, value) => ({
+  type: types.SET_ERROR,
+  fieldError: type,
+  error: value
+});
 
 export default {
   setField,
@@ -29,5 +34,6 @@ export default {
   setSolved,
   resetSolved,
   toCompare,
-  resetCompare
+  resetCompare,
+  setError
 };

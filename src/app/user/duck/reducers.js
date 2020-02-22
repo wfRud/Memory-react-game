@@ -9,7 +9,9 @@ const Initial_User = {
   step: 0,
   flipped: [],
   solved: [],
-  compare: []
+  compare: [],
+  nameError: false,
+  emailError: false
 };
 
 const userReducer = (state = Initial_User, action) => {
@@ -39,6 +41,9 @@ const userReducer = (state = Initial_User, action) => {
       return { ...state, compare: [...state.compare, action.item] };
     case types.RESET_COMPARE:
       return { ...state, compare: [] };
+    case types.SET_ERROR:
+      const { fieldError, error } = action;
+      return { ...state, [fieldError]: error };
     default:
       return state;
   }

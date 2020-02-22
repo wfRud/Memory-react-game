@@ -2,9 +2,12 @@ import React from "react";
 import Variant from "./Variant";
 import styles from "./Variation.module.scss";
 import { connect } from "react-redux";
+import { variantActions } from "../../app/variations/duck";
 
 const Variation = props => {
-  // const { levels } = props;
+  const setLevel = e => {
+    props.setLevel(Number(e.target.value));
+  };
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Select Difficult level</h3>
@@ -13,7 +16,7 @@ const Variation = props => {
           <Variant
             content={level}
             key={index}
-            change={props.change}
+            setLevel={setLevel}
             index={index}
           />
         ))}
@@ -26,4 +29,8 @@ const mapStateToProps = state => ({
   variants: state.variants.variations
 });
 
-export default connect(mapStateToProps, {})(Variation);
+const mapDispatchToProps = dispatch => ({
+  setLevel: item => dispatch(variantActions.setLevel(item))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Variation);

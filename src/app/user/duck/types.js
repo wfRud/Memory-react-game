@@ -10,6 +10,8 @@ const SET_SOLVED = "SET_SOLVED";
 const RESET_SOLVED = "RESET_SOLVED";
 const TO_COMPARE = "TO_COMPARE";
 const RESET_COMPARE = "RESET_COMPARE";
+const SET_ERROR = "SET_ERROR";
+
 export default {
   SET_VALUE,
   CLEAR_FIELDS,
@@ -22,5 +24,6 @@ export default {
   SET_SOLVED,
   RESET_SOLVED,
   TO_COMPARE,
-  RESET_COMPARE
+  RESET_COMPARE,
+  SET_ERROR
 };
