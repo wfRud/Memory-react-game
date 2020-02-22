@@ -3,8 +3,7 @@ import types from "./types";
 const Initial_User = {
   name: "",
   email: "",
-  start: false,
-  quit: false,
+
   time: 0,
   step: 0,
   flipped: [],
@@ -21,10 +20,6 @@ const userReducer = (state = Initial_User, action) => {
       return { ...state, [field]: value };
     case types.CLEAR_FIELDS:
       return { ...state, name: "", email: "" };
-    case types.TOGGLE_START:
-      return { ...state, start: !state.start };
-    case types.TOGGLE_QUIT:
-      return { ...state, quit: !state.quit };
     case types.INCREASE_STEP:
       return { ...state, step: state.step + 1 };
     case types.RESET_STEP:

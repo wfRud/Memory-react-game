@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from "./PlayMenu.module.scss";
 import { userActions } from "../../app/user/duck";
-import { variantActions } from "../../app/variations/duck";
+import { gameActions } from "../../app/variations/duck";
 import Actions from "../Actions/Actions";
 import Pause from "../Actions/Pause";
 import EndGame from "../Actions/EndGame";
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   toggleQuit: () => dispatch(userActions.toggleQuit()),
-  clearLevel: () => dispatch(variantActions.clearLevels()),
+  clearLevel: () => dispatch(gameActions.clearLevels()),
   clearFields: () => dispatch(userActions.clearFields()),
   toggleStart: () => dispatch(userActions.toggleStart()),
   resetFlipped: () => dispatch(userActions.resetFlipped()),

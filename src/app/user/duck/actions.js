@@ -6,8 +6,7 @@ const setField = (item, value) => ({
   value: value
 });
 const clearFields = () => ({ type: types.CLEAR_FIELDS, name: "", email: "" });
-const toggleStart = item => ({ type: types.TOGGLE_START, start: item });
-const toggleQuit = item => ({ type: types.TOGGLE_QUIT, quit: item });
+
 const increaseStep = () => ({ type: types.INCREASE_STEP, step: 0 });
 const resetStep = () => ({ type: types.RESET_STEP, step: 0 });
 const setFlipped = item => ({ type: types.SET_FLIPPED, item: item });
@@ -25,8 +24,6 @@ const setError = (type, value) => ({
 export default {
   setField,
   clearFields,
-  toggleStart,
-  toggleQuit,
   increaseStep,
   resetStep,
   setFlipped,

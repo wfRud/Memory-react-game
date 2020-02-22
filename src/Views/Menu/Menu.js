@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import styles from "./Menu.module.scss";
 import { connect } from "react-redux";
 
-import { userActions } from "../../app/user/duck";
+import { gameActions } from "../../app/variations/duck";
 
 const Menu = props => {
   const [clicked, setClicked] = useState(false);
@@ -54,13 +54,13 @@ const Menu = props => {
   );
 };
 const mapDispatchToProps = dispatch => ({
-  toggleStart: () => dispatch(userActions.toggleStart())
+  toggleStart: () => dispatch(gameActions.toggleStart())
 });
 
 const mapStateToProps = state => ({
   userName: state.user.name,
   userEmail: state.user.email,
-  userStart: state.user.start,
+  userStart: state.game.start,
   nameError: state.user.nameError,
   emailError: state.user.emailError,
   variant: state.game.variant
