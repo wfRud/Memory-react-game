@@ -2,7 +2,7 @@ import React from "react";
 import Variant from "./Variant";
 import styles from "./Variation.module.scss";
 import { connect } from "react-redux";
-import { gameActions } from "../../app/variations/duck";
+import { userActions } from "../../app/user/duck";
 
 const Variation = props => {
   const setLevel = e => {
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLevel: item => dispatch(gameActions.setLevel(item))
+  setLevel: item => dispatch(userActions.setLevel(item))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Variation);

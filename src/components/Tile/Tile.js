@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { userActions } from "../../app/user/duck";
+import { gameActions } from "../../app/variations/duck";
 import styles from "./Tile.module.scss";
 import SVGIcon from "./SVGIcon";
 
@@ -66,17 +67,17 @@ const Tile = props => {
 };
 const mapDispatchStateToProps = dispatch => ({
   increaseStep: () => dispatch(userActions.increaseStep()),
-  setFlipped: item => dispatch(userActions.setFlipped(item)),
-  resetFlipped: () => dispatch(userActions.resetFlipped()),
-  disabledCard: () => dispatch(userActions.disabledCard()),
-  setSolved: item => dispatch(userActions.setSolved(item)),
-  resetSolved: () => dispatch(userActions.resetSolved()),
-  toCompare: item => dispatch(userActions.toCompare(item)),
-  resetCompare: () => dispatch(userActions.resetCompare())
+  setFlipped: item => dispatch(gameActions.setFlipped(item)),
+  resetFlipped: () => dispatch(gameActions.resetFlipped()),
+  disabledCard: () => dispatch(gameActions.disabledCard()),
+  setSolved: item => dispatch(gameActions.setSolved(item)),
+  resetSolved: () => dispatch(gameActions.resetSolved()),
+  toCompare: item => dispatch(gameActions.toCompare(item)),
+  resetCompare: () => dispatch(gameActions.resetCompare())
 });
 
 const mapStateToProps = state => ({
-  flipped: state.user.flipped,
-  solved: state.user.solved
+  flipped: state.game.flipped,
+  solved: state.game.solved
 });
 export default connect(mapStateToProps, mapDispatchStateToProps)(Tile);

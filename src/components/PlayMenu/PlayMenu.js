@@ -60,17 +60,16 @@ const PlayMenu = props => {
 };
 const mapStateToProps = state => ({
   step: state.user.step,
-  solved: state.user.solved,
-  variant: state.game.variant
+  solved: state.game.solved,
+  variant: state.user.variant
 });
 const mapDispatchToProps = dispatch => ({
-  toggleQuit: () => dispatch(userActions.toggleQuit()),
-  clearLevel: () => dispatch(gameActions.clearLevels()),
+  clearLevel: () => dispatch(userActions.clearLevels()),
   clearFields: () => dispatch(userActions.clearFields()),
-  toggleStart: () => dispatch(userActions.toggleStart()),
-  resetFlipped: () => dispatch(userActions.resetFlipped()),
-  resetSolved: () => dispatch(userActions.resetSolved()),
-  resetCompare: () => dispatch(userActions.resetCompare()),
+  toggleStart: () => dispatch(gameActions.toggleStart()),
+  resetFlipped: () => dispatch(gameActions.resetFlipped()),
+  resetSolved: () => dispatch(gameActions.resetSolved()),
+  resetCompare: () => dispatch(gameActions.resetCompare()),
   resetStep: () => dispatch(userActions.resetStep())
 });
 

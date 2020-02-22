@@ -3,14 +3,9 @@ import types from "./types";
 const Initial_User = {
   name: "",
   email: "",
-
+  variant: null,
   time: 0,
-  step: 0,
-  flipped: [],
-  solved: [],
-  compare: [],
-  nameError: false,
-  emailError: false
+  step: 0
 };
 
 const userReducer = (state = Initial_User, action) => {
@@ -24,21 +19,11 @@ const userReducer = (state = Initial_User, action) => {
       return { ...state, step: state.step + 1 };
     case types.RESET_STEP:
       return { ...state, step: 0 };
-    case types.SET_FLIPPED:
-      return { ...state, flipped: [...state.flipped, action.item] };
-    case types.RESET_FLIPPED:
-      return { ...state, flipped: [] };
-    case types.SET_SOLVED:
-      return { ...state, solved: [...state.solved, action.item] };
-    case types.RESET_SOLVED:
-      return { ...state, solved: [] };
-    case types.TO_COMPARE:
-      return { ...state, compare: [...state.compare, action.item] };
-    case types.RESET_COMPARE:
-      return { ...state, compare: [] };
-    case types.SET_ERROR:
-      const { fieldError, error } = action;
-      return { ...state, [fieldError]: error };
+    case types.SET_LEVELS:
+      return { ...state, variant: action.variant };
+    case types.CLEAR_LEVELS:
+      return { ...state, variant: action.variant };
+
     default:
       return state;
   }

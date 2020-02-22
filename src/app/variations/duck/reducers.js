@@ -2,21 +2,33 @@ import types from "./types";
 
 const Initial_Variations = {
   variations: [16, 36, 64],
-  variant: null,
   start: false,
-  quit: false
+  flipped: [],
+  solved: [],
+  compare: [],
+  nameError: false,
+  emailError: false
 };
 
 const variantReducer = (state = Initial_Variations, action) => {
   switch (action.type) {
     case types.TOGGLE_START:
       return { ...state, start: !state.start };
-    case types.TOGGLE_QUIT:
-      return { ...state, quit: !state.quit };
-    case types.SET_LEVELS:
-      return { ...state, variant: action.variant };
-    case types.CLEAR_LEVELS:
-      return { ...state, variant: action.variant };
+    case types.SET_ERROR:
+      const { fieldError, error } = action;
+      return { ...state, [fieldError]: error };
+    case types.SET_FLIPPED:
+      return { ...state, flipped: [...state.flipped, action.item] };
+    case types.RESET_FLIPPED:
+      return { ...state, flipped: [] };
+    case types.SET_SOLVED:
+      return { ...state, solved: [...state.solved, action.item] };
+    case types.RESET_SOLVED:
+      return { ...state, solved: [] };
+    case types.TO_COMPARE:
+      return { ...state, compare: [...state.compare, action.item] };
+    case types.RESET_COMPARE:
+      return { ...state, compare: [] };
     default:
       return state;
   }

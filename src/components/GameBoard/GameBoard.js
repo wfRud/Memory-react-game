@@ -113,10 +113,9 @@ class GameBoard extends Component {
 }
 
 const mapStateToProps = state => ({
-  variant: state.game.variant,
-  clicker: state.user.clicker,
-  solved: state.user.solved,
-  compare: state.user.compare
+  variant: state.user.variant,
+  solved: state.game.solved,
+  compare: state.game.compare
 });
 
 export default connect(mapStateToProps, {})(GameBoard);

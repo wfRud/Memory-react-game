@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Form.module.scss";
 import { userActions } from "../../app/user/duck";
+import { gameActions } from "../../app/variations/duck";
 import { connect } from "react-redux";
 
 const Form = props => {
@@ -65,12 +66,12 @@ const Form = props => {
 const mapStateToProps = state => ({
   userName: state.user.name,
   userEmail: state.user.email,
-  nameError: state.user.nameError,
-  emailError: state.user.emailError
+  nameError: state.game.nameError,
+  emailError: state.game.emailError
 });
 const mapDispatchToProps = dispatch => ({
   setError: (fieldError, error) =>
-    dispatch(userActions.setError(fieldError, error)),
+    dispatch(gameActions.setError(fieldError, error)),
   setField: (item, value) => dispatch(userActions.setField(item, value))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -6,31 +6,16 @@ const setField = (item, value) => ({
   value: value
 });
 const clearFields = () => ({ type: types.CLEAR_FIELDS, name: "", email: "" });
-
 const increaseStep = () => ({ type: types.INCREASE_STEP, step: 0 });
 const resetStep = () => ({ type: types.RESET_STEP, step: 0 });
-const setFlipped = item => ({ type: types.SET_FLIPPED, item: item });
-const resetFlipped = () => ({ type: types.RESET_FLIPPED, flipped: [] });
-const setSolved = item => ({ type: types.SET_SOLVED, item: item });
-const resetSolved = () => ({ type: types.RESET_SOLVED, solved: [] });
-const toCompare = item => ({ type: types.TO_COMPARE, item: item });
-const resetCompare = () => ({ type: types.RESET_COMPARE, compare: [] });
-const setError = (type, value) => ({
-  type: types.SET_ERROR,
-  fieldError: type,
-  error: value
-});
+const setLevel = item => ({ type: types.SET_LEVELS, variant: item });
+const clearLevels = () => ({ type: types.CLEAR_LEVELS, variant: null });
 
 export default {
   setField,
   clearFields,
   increaseStep,
   resetStep,
-  setFlipped,
-  resetFlipped,
-  setSolved,
-  resetSolved,
-  toCompare,
-  resetCompare,
-  setError
+  setLevel,
+  clearLevels
 };
