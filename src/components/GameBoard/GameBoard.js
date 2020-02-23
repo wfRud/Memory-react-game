@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import Tile from "../Tile/Tile";
 import styles from "./GameBoard.module.scss";
 import { connect } from "react-redux";
@@ -75,7 +76,6 @@ class GameBoard extends Component {
     });
   };
   matchCards = () => {
-    console.log(this.props.compare[0], this.props.compare[1]);
     return this.props.compare[0] === this.props.compare[1] ? true : false;
   };
   switchTileWrapperClass = variant => {
@@ -107,6 +107,7 @@ class GameBoard extends Component {
             />
           ))}
         </div>
+        {!this.props.variant && <Redirect to="/" />};
       </div>
     );
   }
