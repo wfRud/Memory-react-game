@@ -1,10 +1,16 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     width: 40%;
-    min-height: 25%;
-    height: 45%;
+    height: 50%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        min-height: 65%;
+        max-height: 100%;
+
+    }
 
     @media(min-width: 320px)and(max-width: 499px) {
         width: 90%;
@@ -18,13 +24,4 @@
         width: 60%;
     }
 
-    @keyframes showMessage {
-        0% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1
-        }
-    }
 }

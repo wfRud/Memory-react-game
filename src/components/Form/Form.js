@@ -12,11 +12,12 @@ const Form = props => {
     nameError,
     emailError,
     userPassword,
+    userPassword2,
     userName,
     userEmail,
     passwordError,
     passwordConfirmError,
-    isLogged,
+    loginClicked,
     setField
   } = props;
 
@@ -50,53 +51,61 @@ const Form = props => {
   };
 
   return (
-    <form className={styles.wrapper}>
-      <Input
-        inputType="text"
-        placeHolder="put your nick"
-        nameField="name"
-        handleInput={handleInput}
-        inputValue={userName}
-        autoComplete="off"
-        validFields={validFields}
-        typeError={nameError}
-        errorMessage="Name should starts from Big letter and has minimum 4 letters"
-      />
-      <Input
-        inputType="text"
-        placeHolder="put your email"
-        nameField="email"
-        handleInput={handleInput}
-        inputValue={userEmail}
-        autoComplete="off"
-        validFields={validFields}
-        typeError={emailError}
-        errorMessage="Invalid Email"
-      />
-      <Input
-        inputType="password"
-        placeHolder="put your password"
-        nameField="password"
-        handleInput={handleInput}
-        // inputValue={userEmail}
-        autoComplete="off"
-        validFields={validFields}
-        typeError={passwordError}
-        errorMessage="Password should has 6 between 20 letter and include big letter"
-      />
-      <Input
-        inputType="password"
-        placeHolder="repeat your password"
-        nameField="password2"
-        handleInput={handleInput}
-        // inputValue={userEmail}
-        autoComplete="off"
-        validFields={validFields}
-        typeError={passwordConfirmError}
-        errorMessage="passwords are difference"
-      />
-      {isLogged && <Variation />}
-    </form>
+    <div className={styles.wrapper}>
+      <form>
+        <Input
+          inputType="text"
+          placeHolder={
+            !loginClicked ? "put your nick" : "put your nick or email"
+          }
+          nameField="name"
+          handleInput={handleInput}
+          inputValue={userName}
+          autoComplete="off"
+          validFields={validFields}
+          typeError={nameError}
+          errorMessage="Name should starts from Big letter and has minimum 4 letters"
+        />
+        {!loginClicked && (
+          <Input
+            inputType="text"
+            placeHolder="put your email"
+            nameField="email"
+            handleInput={handleInput}
+            inputValue={userEmail}
+            autoComplete="off"
+            validFields={validFields}
+            typeError={emailError}
+            errorMessage="Invalid Email"
+          />
+        )}
+        <Input
+          inputType="password"
+          placeHolder="put your password"
+          nameField="password"
+          handleInput={handleInput}
+          inputValue={userPassword}
+          autoComplete="off"
+          validFields={validFields}
+          typeError={passwordError}
+          errorMessage="Password should has 6 between 20 letter and include big letter"
+        />
+        {!loginClicked && (
+          <Input
+            inputType="password"
+            placeHolder="repeat your password"
+            nameField="password2"
+            handleInput={handleInput}
+            inputValue={userPassword2}
+            autoComplete="off"
+            validFields={validFields}
+            typeError={passwordConfirmError}
+            errorMessage="passwords are different"
+          />
+        )}
+        {/* {loginClicked && <Variation />} */}
+      </form>
+    </div>
   );
 };
 
@@ -104,6 +113,7 @@ const mapStateToProps = state => ({
   userName: state.user.name,
   userEmail: state.user.email,
   userPassword: state.user.password,
+  userPassword2: state.user.password2,
   nameError: state.game.nameError,
   emailError: state.game.emailError,
   passwordError: state.game.passwordError,

@@ -5,7 +5,13 @@ const setField = (item, value) => ({
   field: item,
   value: value
 });
-const clearFields = () => ({ type: types.CLEAR_FIELDS, name: "", email: "" });
+const clearFields = () => ({
+  type: types.CLEAR_FIELDS,
+  name: "",
+  email: "",
+  password: "",
+  password2: ""
+});
 const increaseStep = () => ({ type: types.INCREASE_STEP, step: 0 });
 const resetStep = () => ({ type: types.RESET_STEP, step: 0 });
 const setLevel = item => ({ type: types.SET_LEVELS, variant: item });

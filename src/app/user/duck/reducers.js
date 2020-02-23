@@ -3,6 +3,8 @@ import types from "./types";
 const Initial_User = {
   name: "",
   email: "",
+  password: "",
+  password2: "",
   variant: null,
   time: 0,
   step: 0
@@ -14,7 +16,7 @@ const userReducer = (state = Initial_User, action) => {
       const { field, value } = action;
       return { ...state, [field]: value };
     case types.CLEAR_FIELDS:
-      return { ...state, name: "", email: "" };
+      return { ...state, name: "", email: "", password: "", password2: "" };
     case types.INCREASE_STEP:
       return { ...state, step: state.step + 1 };
     case types.RESET_STEP:
