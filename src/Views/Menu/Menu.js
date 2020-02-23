@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Form from "../../components/Form/Form";
-import Variation from "../../components/Variation/Variation";
 import { Redirect } from "react-router-dom";
 import styles from "./Menu.module.scss";
 import { connect } from "react-redux";
@@ -9,6 +8,7 @@ import { gameActions } from "../../app/variations/duck";
 
 const Menu = props => {
   const [clicked, setClicked] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const { userStart } = props;
 
   const handleClick = () => {
@@ -41,13 +41,15 @@ const Menu = props => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
-      <Form />
-      <Variation />
+      <Form isLogged={isLogged} />
       <div className={styles.button_wrapper}>
-        <button className={styles.actionButton} onClick={handleClick}>
-          Start
-        </button>
+        <button className={styles.actionButton}>Register</button>
         <button className={styles.actionButton}>Rank</button>
+        {isLogged && (
+          <button className={styles.actionButton} onClick={handleClick}>
+            Start
+          </button>
+        )}
       </div>
       {userStart && <Redirect to="/gamePlay" />}
     </div>

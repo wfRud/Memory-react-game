@@ -7,7 +7,9 @@ const Initial_Variations = {
   solved: [],
   compare: [],
   nameError: false,
-  emailError: false
+  emailError: false,
+  passwordError: false,
+  passwordConfirmError: false
 };
 
 const variantReducer = (state = Initial_Variations, action) => {

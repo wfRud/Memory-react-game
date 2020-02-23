@@ -1,0 +1,55 @@
+.wrapper {
+    text-align: center;
+    min-height: 150px;
+    width: 100%;
+
+    .title {
+        font-size: 24px;
+        color: #F9B9B7;
+    }
+
+    .variant_Cnt {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        flex-wrap: nowrap;
+
+        .levelTile {
+            position: relative;
+
+            & [type="radio"] {
+                display: none;
+            }
+
+            .checkedInput {
+                height: 100%;
+                width: 100%;
+                padding: 10px 15px;
+                font-size: 5rem;
+                background-color: #F9B9B7;
+                color: #fff;
+                border-radius: 35px;
+                transition: .2s;
+
+                @media(min-width: 320px)and(max-width: 499px) {
+                    font-size: 3.5rem;
+                }
+
+                &:hover {
+                    background-color: #fff;
+                    color: #F9B9B7;
+                    cursor: pointer;
+                }
+            }
+
+            [type="radio"]:checked+.checkedInput {
+                background-color: #fff;
+                color: #F9B9B7;
+                box-shadow: 0 0 0 6px #F9B9B7;
+            }
+
+        }
+
+    }
+}

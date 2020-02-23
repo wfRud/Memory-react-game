@@ -1,73 +1,113 @@
 import React from "react";
 import styles from "./Form.module.scss";
+import Input from "./Input/Input";
+import Variation from "./Variation/Variation";
 import { userActions } from "../../app/user/duck";
 import { gameActions } from "../../app/variations/duck";
 import { connect } from "react-redux";
 
 const Form = props => {
-  const { setError, nameError, emailError } = props;
+  const {
+    setError,
+    nameError,
+    emailError,
+    userPassword,
+    userName,
+    userEmail,
+    passwordError,
+    passwordConfirmError,
+    isLogged,
+    setField
+  } = props;
 
-  const handleInputChange = e => {
+  const handleInput = e => {
     const value = e.target.value;
-    props.setField(e.target.name, value);
+    setField(e.target.name, value);
   };
   const validFields = e => {
-    console.log(!!e.target.value, e.target.name);
     if (e.target.value !== "") {
       if (e.target.name === "name") {
         const regName = /(^[A-ZĄĆĘŁŃÓŚŹŻ]{1})[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ^*-]{3,}$/;
         regName.test(e.target.value) || e.target.value === ""
           ? setError("nameError", false)
           : setError("nameError", true);
-      } else {
+      } else if (e.target.name === "email") {
         const mailReg = /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
         mailReg.test(e.target.value)
           ? setError("emailError", false)
           : setError("emailError", true);
+      } else if (e.target.name === "password") {
+        const passReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/;
+        passReg.test(e.target.value)
+          ? setError("passwordError", false)
+          : setError("passwordError", true);
+      } else if (e.target.name === "password2") {
+        e.target.value === userPassword
+          ? setError("passwordConfirmError", false)
+          : setError("passwordConfirmError", true);
       }
     }
   };
 
   return (
-    <div className={styles.wrapper}>
-      <input
-        type="text"
-        placeholder="put your name"
-        name="name"
-        onChange={handleInputChange}
-        value={props.userName}
+    <form className={styles.wrapper}>
+      <Input
+        inputType="text"
+        placeHolder="put your nick"
+        nameField="name"
+        handleInput={handleInput}
+        inputValue={userName}
         autoComplete="off"
-        onBlur={validFields}
-        className={styles.inputsField}
-        id="name"
+        validFields={validFields}
+        typeError={nameError}
+        errorMessage="Name should starts from Big letter and has minimum 4 letters"
       />
-      {nameError && props.userName !== "" ? (
-        <div className={styles.errorMessage}>
-          Name should starts from Big letter and has minimum 4 letters
-        </div>
-      ) : null}
-
-      <input
-        type="text"
-        placeholder="put your email"
-        name="email"
-        onChange={handleInputChange}
-        onBlur={validFields}
+      <Input
+        inputType="text"
+        placeHolder="put your email"
+        nameField="email"
+        handleInput={handleInput}
+        inputValue={userEmail}
         autoComplete="off"
-        className={styles.inputsField}
+        validFields={validFields}
+        typeError={emailError}
+        errorMessage="Invalid Email"
       />
-      {emailError && props.userEmail !== "" ? (
-        <div className={styles.errorMessage}>Invalid Email</div>
-      ) : null}
-    </div>
+      <Input
+        inputType="password"
+        placeHolder="put your password"
+        nameField="password"
+        handleInput={handleInput}
+        // inputValue={userEmail}
+        autoComplete="off"
+        validFields={validFields}
+        typeError={passwordError}
+        errorMessage="Password should has 6 between 20 letter and include big letter"
+      />
+      <Input
+        inputType="password"
+        placeHolder="repeat your password"
+        nameField="password2"
+        handleInput={handleInput}
+        // inputValue={userEmail}
+        autoComplete="off"
+        validFields={validFields}
+        typeError={passwordConfirmError}
+        errorMessage="passwords are difference"
+      />
+      {isLogged && <Variation />}
+    </form>
   );
 };
 
 const mapStateToProps = state => ({
   userName: state.user.name,
   userEmail: state.user.email,
+  userPassword: state.user.password,
   nameError: state.game.nameError,
-  emailError: state.game.emailError
+  emailError: state.game.emailError,
+  passwordError: state.game.passwordError,
+  passwordConfirmError: state.game.passwordConfirmError
 });
 const mapDispatchToProps = dispatch => ({
   setError: (fieldError, error) =>
