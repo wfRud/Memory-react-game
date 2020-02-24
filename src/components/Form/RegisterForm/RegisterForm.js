@@ -34,7 +34,9 @@ const Form = props => {
       email: userEmail,
       password: userPassword
     };
-
+    axios
+      .post("http//localhost/register.php", user)
+      .then(resp => console.log(resp.data));
     clearFields();
   };
 

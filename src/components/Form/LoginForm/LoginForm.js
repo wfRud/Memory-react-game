@@ -27,7 +27,9 @@ const LoginForm = props => {
       name: userName,
       password: userPassword
     };
-
+    axios
+      .post("http//localhost/login.php", user)
+      .then(resp => console.log(resp.data));
     clearFields();
   };
   // cSpell:ignore ZĄĆĘŁŃÓŚŹŻ, ąćęłńóśźżĄĆĘŁŃÓŚŹŻ
