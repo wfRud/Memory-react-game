@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./Form.module.scss";
-import Input from "./Input/Input";
-import Variation from "./Variation/Variation";
-import { userActions } from "../../app/user/duck";
-import { gameActions } from "../../app/variations/duck";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import styles from "./RegisterForm.module.scss";
+import Input from "../Input/Input";
+import { userActions } from "../../../app/user/duck";
+import { gameActions } from "../../../app/variations/duck";
 import { connect } from "react-redux";
 
 const Form = props => {
@@ -17,17 +18,27 @@ const Form = props => {
     userEmail,
     passwordError,
     passwordConfirmError,
-    loginClicked,
     setField,
-    submit,
-    handleLoginClick,
-    handleRegisterClick
+    handleRegisterClick,
+    clearFields
   } = props;
 
   const handleInput = e => {
     const value = e.target.value;
     setField(e.target.name, value);
   };
+  const onSubmit = e => {
+    e.preventDefault();
+    const user = {
+      name: userName,
+      email: userEmail,
+      password: userPassword
+    };
+
+    clearFields();
+  };
+
+  // cSpell:ignore ZĄĆĘŁŃÓŚŹŻ, ąćęłńóśźżĄĆĘŁŃÓŚŹŻ
   const validFields = e => {
     if (e.target.value !== "") {
       if (e.target.name === "name") {
@@ -55,12 +66,10 @@ const Form = props => {
 
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={submit}>
+      <form onSubmit={onSubmit}>
         <Input
           inputType="text"
-          placeHolder={
-            !loginClicked ? "put your nick" : "put your nick or email"
-          }
+          placeHolder={"put your nick"}
           nameField="name"
           handleInput={handleInput}
           inputValue={userName}
@@ -69,19 +78,17 @@ const Form = props => {
           typeError={nameError}
           errorMessage="Name should starts from Big letter and has minimum 4 letters"
         />
-        {!loginClicked && (
-          <Input
-            inputType="text"
-            placeHolder="put your email"
-            nameField="email"
-            handleInput={handleInput}
-            inputValue={userEmail}
-            autoComplete="off"
-            validFields={validFields}
-            typeError={emailError}
-            errorMessage="Invalid Email"
-          />
-        )}
+        <Input
+          inputType="text"
+          placeHolder="put your email"
+          nameField="email"
+          handleInput={handleInput}
+          inputValue={userEmail}
+          autoComplete="off"
+          validFields={validFields}
+          typeError={emailError}
+          errorMessage="Invalid Email"
+        />
         <Input
           inputType="password"
           placeHolder="put your password"
@@ -93,20 +100,17 @@ const Form = props => {
           typeError={passwordError}
           errorMessage="Password should has 6 between 20 letter and include big letter"
         />
-        {!loginClicked && (
-          <Input
-            inputType="password"
-            placeHolder="repeat your password"
-            nameField="password2"
-            handleInput={handleInput}
-            inputValue={userPassword2}
-            autoComplete="off"
-            validFields={validFields}
-            typeError={passwordConfirmError}
-            errorMessage="passwords are different"
-          />
-        )}
-        {/* {loginClicked && <Variation />} */}
+        <Input
+          inputType="password"
+          placeHolder="repeat your password"
+          nameField="password2"
+          handleInput={handleInput}
+          inputValue={userPassword2}
+          autoComplete="off"
+          validFields={validFields}
+          typeError={passwordConfirmError}
+          errorMessage="passwords are different"
+        />
         <div className={styles.button_wrapper}>
           <button
             type="submit"
@@ -116,20 +120,13 @@ const Form = props => {
             Register
           </button>
 
-          <button
-            type="submit"
-            className={styles.actionButton}
-            onClick={handleLoginClick}
-          >
+          <Link className={styles.actionButton} to="/">
             Login
-          </button>
+          </Link>
 
-          {/* {loginClicked && (
-          <button className={styles.actionButton} onClick={handleStartClick}>
-            Start
-          </button>
-        )} */}
-          <button className={styles.actionButton}>Rank</button>
+          <Link className={styles.actionButton} to="/rank">
+            Rank
+          </Link>
         </div>
       </form>
     </div>
@@ -149,6 +146,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setError: (fieldError, error) =>
     dispatch(gameActions.setError(fieldError, error)),
-  setField: (item, value) => dispatch(userActions.setField(item, value))
+  setField: (item, value) => dispatch(userActions.setField(item, value)),
+  clearFields: () => dispatch(userActions.clearFields())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
