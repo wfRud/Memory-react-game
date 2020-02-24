@@ -18,7 +18,10 @@ const Form = props => {
     passwordError,
     passwordConfirmError,
     loginClicked,
-    setField
+    setField,
+    submit,
+    handleLoginClick,
+    handleRegisterClick
   } = props;
 
   const handleInput = e => {
@@ -52,7 +55,7 @@ const Form = props => {
 
   return (
     <div className={styles.wrapper}>
-      <form>
+      <form onSubmit={submit}>
         <Input
           inputType="text"
           placeHolder={
@@ -104,6 +107,30 @@ const Form = props => {
           />
         )}
         {/* {loginClicked && <Variation />} */}
+        <div className={styles.button_wrapper}>
+          <button
+            type="submit"
+            className={styles.actionButton}
+            onClick={handleRegisterClick}
+          >
+            Register
+          </button>
+
+          <button
+            type="submit"
+            className={styles.actionButton}
+            onClick={handleLoginClick}
+          >
+            Login
+          </button>
+
+          {/* {loginClicked && (
+          <button className={styles.actionButton} onClick={handleStartClick}>
+            Start
+          </button>
+        )} */}
+          <button className={styles.actionButton}>Rank</button>
+        </div>
       </form>
     </div>
   );

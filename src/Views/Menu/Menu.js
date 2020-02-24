@@ -10,7 +10,7 @@ import { userActions } from "../../app/user/duck";
 const Menu = props => {
   const [startClicked, setStartClicked] = useState(false);
   const [loginClicked, setLoginClicked] = useState(true);
-  const { userStart, clearFields } = props;
+  const { userName, userEmail, password, userStart, clearFields } = props;
 
   const handleStartClick = () => {
     setStartClicked(true);
@@ -21,7 +21,18 @@ const Menu = props => {
   };
   const handleRegisterClick = () => {
     setLoginClicked(false);
-    clearFields();
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    if (userName && userEmail && password) {
+      const user = {
+        name: userName,
+        email: userEmail,
+        password: password
+      };
+      console.log(user);
+      clearFields();
+    } else return;
   };
 
   useEffect(() => {
@@ -53,23 +64,13 @@ const Menu = props => {
       <h2 className={styles.text}>
         {!loginClicked ? "Set account and login" : "Login and join to game"}
       </h2>
-      <Form loginClicked={loginClicked} />
-      <div className={styles.button_wrapper}>
-        <button className={styles.actionButton} onClick={handleRegisterClick}>
-          Register
-        </button>
+      <Form
+        loginClicked={loginClicked}
+        submit={onSubmit}
+        handleRegisterClick={handleRegisterClick}
+        handleLoginClick={handleLoginClick}
+      />
 
-        <button className={styles.actionButton} onClick={handleLoginClick}>
-          Login
-        </button>
-
-        {/* {loginClicked && (
-          <button className={styles.actionButton} onClick={handleStartClick}>
-            Start
-          </button>
-        )} */}
-        <button className={styles.actionButton}>Rank</button>
-      </div>
       {userStart && <Redirect to="/gamePlay" />}
     </div>
   );
@@ -82,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   userName: state.user.name,
   userEmail: state.user.email,
+  password: state.user.password,
   variant: state.user.variant,
   userStart: state.game.start,
   nameError: state.game.nameError,
