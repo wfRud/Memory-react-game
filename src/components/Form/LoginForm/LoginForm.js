@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./LoginForm.module.scss";
 import { connect } from "react-redux";
 import { userActions } from "../../../app/user/duck";
+import { gameActions } from "../../../app/variations/duck";
 
 const LoginForm = props => {
   const {
@@ -13,7 +14,9 @@ const LoginForm = props => {
     userName,
     passwordError,
     setField,
-    clearFields
+    clearFields,
+    setIsLogged,
+    setError
   } = props;
 
   const handleInput = e => {
@@ -21,47 +24,44 @@ const LoginForm = props => {
     setField(e.target.name, value);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const loginUser = async () => {
     const user = {
       name: userName,
       password: userPassword
     };
-    axios
-      .post("http//localhost/login.php", user)
-      .then(resp => console.log(resp.data));
+    await axios
+      .post("/login.php", user)
+      .then(resp => resp)
+      .then(data => {
+        if (data.data.isLogged) {
+          setIsLogged(true);
+        } else {
+          setIsLogged(false);
+          setError(data.data.name, true);
+          console.log(data.data);
+        }
+      })
+      .catch(error => error);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    loginUser();
     clearFields();
   };
-  // cSpell:ignore ZĄĆĘŁŃÓŚŹŻ, ąćęłńóśźżĄĆĘŁŃÓŚŹŻ
-  // const validFields = e => {
-  //   if (e.target.value !== "") {
-  //     if (e.target.name === "name") {
-  //       const regName = /(^[A-ZĄĆĘŁŃÓŚŹŻ]{1})[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ^*-]{3,}$/;
-  //       regName.test(e.target.value) || e.target.value === ""
-  //         ? setError("nameError", false)
-  //         : setError("nameError", true);
-  //     } else if (e.target.name === "email") {
-  //       const mailReg = /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
-  //       mailReg.test(e.target.value)
-  //         ? setError("emailError", false)
-  //         : setError("emailError", true);
-  //     }
-  //   }
-  // };
 
   return (
     <div className={styles.wrapper}>
       <form onSubmit={onSubmit}>
         <Input
           inputType="text"
-          placeHolder={"put your nick"}
+          placeHolder={"put your nick or email"}
           nameField="name"
           handleInput={handleInput}
           inputValue={userName}
           autoComplete="off"
-          // validFields={validFields}
           typeError={nameError}
-          errorMessage="Name should starts from Big letter and has minimum 4 letters"
+          errorMessage="Wrong Login or Password"
         />
 
         <Input
@@ -71,9 +71,8 @@ const LoginForm = props => {
           handleInput={handleInput}
           inputValue={userPassword}
           autoComplete="off"
-          // validFields={validFields}
           typeError={passwordError}
-          errorMessage="Password should has 6 between 20 letter and include big letter"
+          errorMessage="Wrong Login or Password"
         />
 
         <div className={styles.button_wrapper}>
@@ -106,6 +105,9 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   setField: (item, value) => dispatch(userActions.setField(item, value)),
-  clearFields: () => dispatch(userActions.clearFields())
+  clearFields: () => dispatch(userActions.clearFields()),
+  setIsLogged: item => dispatch(gameActions.setIsLogged(item)),
+  setError: (fieldError, error) =>
+    dispatch(gameActions.setError(fieldError, error))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

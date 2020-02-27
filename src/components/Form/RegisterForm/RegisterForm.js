@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./RegisterForm.module.scss";
@@ -8,44 +8,86 @@ import { gameActions } from "../../../app/variations/duck";
 import { connect } from "react-redux";
 
 const Form = props => {
+  const [sendData, setSendData] = useState(false);
   const {
     setError,
     nameError,
     emailError,
-    userPassword,
-    userPassword2,
-    userName,
-    userEmail,
     passwordError,
     passwordConfirmError,
+    userName,
+    userEmail,
+    userPassword,
+    userPassword2,
     setField,
     handleRegisterClick,
-    clearFields
+    clearFields,
+    setRegister
   } = props;
 
+  useEffect(() => {
+    if (
+      userName &&
+      !nameError &&
+      userEmail &&
+      !emailError &&
+      userPassword &&
+      !passwordError &&
+      userPassword2 &&
+      !passwordConfirmError
+    ) {
+      setSendData(true);
+    }
+  }, [
+    userName,
+    userEmail,
+    userPassword,
+    userPassword2,
+    nameError,
+    emailError,
+    passwordError,
+    passwordConfirmError
+  ]);
   const handleInput = e => {
     const value = e.target.value;
     setField(e.target.name, value);
   };
-  const onSubmit = e => {
-    e.preventDefault();
+
+  const registerUser = async () => {
     const user = {
       name: userName,
       email: userEmail,
-      password: userPassword
+      password: userPassword,
+      password2: userPassword2
     };
-    axios
-      .post("http//localhost/register.php", user)
-      .then(resp => console.log(resp.data));
+    await axios
+      .post("/register.php", user)
+      .then(resp => resp)
+      .then(data => {
+        if (!data.data.error) {
+          setRegister(true);
+        } else {
+          console.log(data.data);
+          // ! display errors after response from host
+        }
+      })
+      .catch(error => console.log(error));
     clearFields();
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (sendData) {
+      registerUser();
+    }
   };
 
   // cSpell:ignore ZĄĆĘŁŃÓŚŹŻ, ąćęłńóśźżĄĆĘŁŃÓŚŹŻ
   const validFields = e => {
     if (e.target.value !== "") {
       if (e.target.name === "name") {
-        const regName = /(^[A-ZĄĆĘŁŃÓŚŹŻ]{1})[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ^*-]{3,}$/;
-        regName.test(e.target.value) || e.target.value === ""
+        const regName = /(^[A-ZĄĆĘŁŃÓŚŹŻ]{1})[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ^*-]{3,20}$/;
+        regName.test(e.target.value)
           ? setError("nameError", false)
           : setError("nameError", true);
       } else if (e.target.name === "email") {
@@ -149,6 +191,7 @@ const mapDispatchToProps = dispatch => ({
   setError: (fieldError, error) =>
     dispatch(gameActions.setError(fieldError, error)),
   setField: (item, value) => dispatch(userActions.setField(item, value)),
-  clearFields: () => dispatch(userActions.clearFields())
+  clearFields: () => dispatch(userActions.clearFields()),
+  setRegister: item => dispatch(gameActions.setRegister(item))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

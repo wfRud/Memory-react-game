@@ -9,7 +9,9 @@ const Initial_Variations = {
   nameError: false,
   emailError: false,
   passwordError: false,
-  passwordConfirmError: false
+  passwordConfirmError: false,
+  register: false,
+  isLogged: null
 };
 
 const variantReducer = (state = Initial_Variations, action) => {
@@ -31,6 +33,10 @@ const variantReducer = (state = Initial_Variations, action) => {
       return { ...state, compare: [...state.compare, action.item] };
     case types.RESET_COMPARE:
       return { ...state, compare: [] };
+    case types.SET_REGISTER:
+      return { ...state, register: action.register };
+    case types.SET_isLogged:
+      return { ...state, isLogged: action.isLogged };
     default:
       return state;
   }

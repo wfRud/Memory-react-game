@@ -6,6 +6,8 @@ const SET_SOLVED = "SET_SOLVED";
 const RESET_SOLVED = "RESET_SOLVED";
 const TO_COMPARE = "TO_COMPARE";
 const RESET_COMPARE = "RESET_COMPARE";
+const SET_REGISTER = "SET_REGISTER";
+const SET_isLogged = "SET_ISLOGGED";
 
 export default {
   TOGGLE_START,
@@ -15,5 +17,7 @@ export default {
   SET_SOLVED,
   RESET_SOLVED,
   TO_COMPARE,
-  RESET_COMPARE
+  RESET_COMPARE,
+  SET_REGISTER,
+  SET_isLogged
 };
