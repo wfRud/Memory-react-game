@@ -107,7 +107,7 @@ class GameBoard extends Component {
             />
           ))}
         </div>
-        {!this.props.variant && <Redirect to="/" />};
+        {!this.props.variant && <Redirect to="/" />}
       </div>
     );
   }

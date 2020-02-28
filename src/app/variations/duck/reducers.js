@@ -1,6 +1,10 @@
 import types from "./types";
 
 const Initial_Variations = {
+  name: "",
+  email: "",
+  password: "",
+  password2: "",
   variations: [16, 36, 64],
   start: false,
   flipped: [],
@@ -16,6 +20,11 @@ const Initial_Variations = {
 
 const variantReducer = (state = Initial_Variations, action) => {
   switch (action.type) {
+    case types.SET_VALUE:
+      const { field, value } = action;
+      return { ...state, [field]: value };
+    case types.CLEAR_FIELDS:
+      return { ...state, name: "", email: "", password: "", password2: "" };
     case types.TOGGLE_START:
       return { ...state, start: !state.start };
     case types.SET_ERROR:

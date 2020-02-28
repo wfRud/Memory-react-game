@@ -1,3 +1,5 @@
+const SET_VALUE = "SET_VALUE";
+const CLEAR_FIELDS = "CLEAR_FIELDS";
 const TOGGLE_START = "TOGGLE_START";
 const SET_ERROR = "SET_ERROR";
 const SET_FLIPPED = "SET_FLIPPED";
@@ -10,6 +12,8 @@ const SET_REGISTER = "SET_REGISTER";
 const SET_isLogged = "SET_ISLOGGED";
 
 export default {
+  SET_VALUE,
+  CLEAR_FIELDS,
   TOGGLE_START,
   SET_ERROR,
   SET_FLIPPED,

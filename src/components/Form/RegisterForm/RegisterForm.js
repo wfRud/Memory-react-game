@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./RegisterForm.module.scss";
 import Input from "../Input/Input";
-import { userActions } from "../../../app/user/duck";
+// import { userActions } from "../../../app/user/duck";
 import { gameActions } from "../../../app/variations/duck";
 import { connect } from "react-redux";
 
@@ -178,10 +178,10 @@ const Form = props => {
 };
 
 const mapStateToProps = state => ({
-  userName: state.user.name,
-  userEmail: state.user.email,
-  userPassword: state.user.password,
-  userPassword2: state.user.password2,
+  userName: state.game.name,
+  userEmail: state.game.email,
+  userPassword: state.game.password,
+  userPassword2: state.game.password2,
   nameError: state.game.nameError,
   emailError: state.game.emailError,
   passwordError: state.game.passwordError,
@@ -190,8 +190,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setError: (fieldError, error) =>
     dispatch(gameActions.setError(fieldError, error)),
-  setField: (item, value) => dispatch(userActions.setField(item, value)),
-  clearFields: () => dispatch(userActions.clearFields()),
+  setField: (item, value) => dispatch(gameActions.setField(item, value)),
+  clearFields: () => dispatch(gameActions.clearFields()),
   setRegister: item => dispatch(gameActions.setRegister(item))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

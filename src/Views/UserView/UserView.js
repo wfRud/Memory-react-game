@@ -1,13 +1,21 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import styles from "./UserView.module.scss";
 import { connect } from "react-redux";
 import Variations from "../../components/Form/Variation/Variation";
 import { gameActions } from "../../app/variations/duck";
-import { userActions } from "../../app/user/duck";
 
 const Menu = props => {
-  const { isLogged } = props;
+  const { isLogged, setIsLogged, toggleStart, variant, start } = props;
+
+  const handleStart = () => {
+    if (variant) {
+      toggleStart(true);
+    }
+  };
+  const handLogout = () => {
+    setIsLogged(false);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -15,29 +23,27 @@ const Menu = props => {
       <h2 className={styles.text}>Hello User</h2>
       <Variations />
       <div className={styles.button_wrapper}>
-        <Link to="/register" className={styles.actionButton}>
+        <button className={styles.actionButton} onClick={handLogout}>
           Logout
-        </Link>
+        </button>
 
-        <button className={styles.actionButton}>Start</button>
+        <button className={styles.actionButton} onClick={handleStart}>
+          Start
+        </button>
       </div>
       {!isLogged && <Redirect to="/" />}
+      {start && <Redirect to="/gamePlay" />}
     </div>
   );
 };
 const mapDispatchToProps = dispatch => ({
   toggleStart: () => dispatch(gameActions.toggleStart()),
-  clearFields: () => dispatch(userActions.clearFields())
+  setIsLogged: item => dispatch(gameActions.setIsLogged(item))
 });
 
 const mapStateToProps = state => ({
-  userName: state.user.name,
-  userEmail: state.user.email,
-  password: state.user.password,
+  start: state.game.start,
   variant: state.user.variant,
-  userStart: state.game.start,
-  nameError: state.game.nameError,
-  emailError: state.game.emailError,
   isLogged: state.game.isLogged
 });
 

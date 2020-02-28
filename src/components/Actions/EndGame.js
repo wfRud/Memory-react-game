@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./EndGame.module.scss";
+import { connect } from "react-redux";
+import { userActions } from "../../app/user/duck";
 
 const EndGame = props => {
   const { accept } = props;
+
+  // useEffect(()=> {
+
+  // })
   return (
     <div className={styles.wrapper}>
       <div className={styles.window}>
@@ -21,4 +27,8 @@ const EndGame = props => {
   );
 };
 
-export default EndGame;
+const mapDispatchToProps = dispatch => ({
+  setTime: value => dispatch(userActions.setTime(value))
+});
+
+export default connect({}, mapDispatchToProps)(EndGame);

@@ -27,6 +27,7 @@ const PlayMenu = props => {
       props.resetStep();
       props.clearFields();
       props.clearLevel();
+      props.toggleStart(false);
     }
   });
 
@@ -65,7 +66,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   clearLevel: () => dispatch(userActions.clearLevels()),
-  clearFields: () => dispatch(userActions.clearFields()),
+  clearFields: () => dispatch(gameActions.clearFields()),
   toggleStart: () => dispatch(gameActions.toggleStart()),
   resetFlipped: () => dispatch(gameActions.resetFlipped()),
   resetSolved: () => dispatch(gameActions.resetSolved()),

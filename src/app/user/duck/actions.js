@@ -1,25 +1,17 @@
 import types from "./types";
 
-const setField = (item, value) => ({
-  type: types.SET_VALUE,
-  field: item,
-  value: value
-});
-const clearFields = () => ({
-  type: types.CLEAR_FIELDS,
-  name: "",
-  email: "",
-  password: "",
-  password2: ""
-});
+const setNick = value => ({ type: types.SET_NICK, nick: value });
+const clearNick = () => ({ type: types.CLEAR_NICK, nick: "" });
+const setTime = value => ({ type: types.SET_TIME, time: value });
 const increaseStep = () => ({ type: types.INCREASE_STEP, step: 0 });
 const resetStep = () => ({ type: types.RESET_STEP, step: 0 });
 const setLevel = item => ({ type: types.SET_LEVELS, variant: item });
 const clearLevels = () => ({ type: types.CLEAR_LEVELS, variant: null });
 
 export default {
-  setField,
-  clearFields,
+  setNick,
+  clearNick,
+  setTime,
   increaseStep,
   resetStep,
   setLevel,

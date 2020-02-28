@@ -14,6 +14,7 @@ const LoginForm = props => {
     userName,
     passwordError,
     setField,
+    setNick,
     clearFields,
     setIsLogged,
     setError
@@ -46,6 +47,7 @@ const LoginForm = props => {
 
   const onSubmit = e => {
     e.preventDefault();
+    setNick(userName);
     loginUser();
     clearFields();
   };
@@ -94,18 +96,19 @@ const LoginForm = props => {
 };
 
 const mapStateToProps = state => ({
-  userName: state.user.name,
-  userEmail: state.user.email,
-  userPassword: state.user.password,
-  userPassword2: state.user.password2,
+  userName: state.game.name,
+  userEmail: state.game.email,
+  userPassword: state.game.password,
+  userPassword2: state.game.password2,
   nameError: state.game.nameError,
   emailError: state.game.emailError,
   passwordError: state.game.passwordError,
   passwordConfirmError: state.game.passwordConfirmError
 });
 const mapDispatchToProps = dispatch => ({
-  setField: (item, value) => dispatch(userActions.setField(item, value)),
-  clearFields: () => dispatch(userActions.clearFields()),
+  setField: (item, value) => dispatch(gameActions.setField(item, value)),
+  setNick: value => dispatch(userActions.setNick(value)),
+  clearFields: () => dispatch(gameActions.clearFields()),
   setIsLogged: item => dispatch(gameActions.setIsLogged(item)),
   setError: (fieldError, error) =>
     dispatch(gameActions.setError(fieldError, error))

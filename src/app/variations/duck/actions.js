@@ -1,4 +1,16 @@
 import types from "./types";
+const setField = (item, value) => ({
+  type: types.SET_VALUE,
+  field: item,
+  value: value
+});
+const clearFields = () => ({
+  type: types.CLEAR_FIELDS,
+  name: "",
+  email: "",
+  password: "",
+  password2: ""
+});
 
 const toggleStart = item => ({ type: types.TOGGLE_START, start: item });
 const setError = (type, value) => ({
@@ -16,6 +28,8 @@ const setRegister = item => ({ type: types.SET_REGISTER, register: item });
 const setIsLogged = item => ({ type: types.SET_isLogged, isLogged: item });
 
 export default {
+  setField,
+  clearFields,
   toggleStart,
   setError,
   setFlipped,
