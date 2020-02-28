@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./EndGame.module.scss";
-import { connect } from "react-redux";
-import { userActions } from "../../app/user/duck";
 
 const EndGame = props => {
-  const { accept } = props;
+  const { accept, steps, minutes, seconds } = props;
 
-  // useEffect(()=> {
-
-  // })
   return (
     <div className={styles.wrapper}>
       <div className={styles.window}>
         <h1 className={styles.text}>YOUR RESULT IS</h1>
-        <p className={styles.result}>1:05</p>
-        <p className={styles.result}>33 STEPS</p>
+        <p className={styles.result}>
+          {minutes < 10 ? `0${minutes}` : minutes}:
+          {seconds < 10 ? `0${seconds}` : seconds}
+        </p>
+        <p className={styles.result}>{steps}STEPS </p>
         <h1 className={styles.text}>YOUR POSITION IS</h1>
         <p className={styles.result}>13</p>
         <div className={styles.buttons}>
@@ -27,8 +25,4 @@ const EndGame = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  setTime: value => dispatch(userActions.setTime(value))
-});
-
-export default connect({}, mapDispatchToProps)(EndGame);
+export default EndGame;

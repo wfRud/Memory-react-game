@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from "./PlayMenu.module.scss";
@@ -15,7 +15,8 @@ import Counter from "./Counter/Counter";
 import QuitBtn from "./QuitBtn/QuitBtn";
 
 const PlayMenu = props => {
-  const { solved, variant } = props;
+  const { solved, variant, steps, setTime } = props;
+  const [endGame, setEndGame] = useState(false);
   const { stopTimer, startTimer, seconds, minutes, isRunning } = useStopWatch();
   const { isQuit, isConfirm, setIsQuit, accept, decline } = useQuit();
   const { width } = useWindowDimensions();
@@ -31,6 +32,18 @@ const PlayMenu = props => {
     }
   });
 
+  const handleEndGame = () => {
+    if (solved.length === variant / 2) {
+      stopTimer();
+      setTime(`${minutes}:${seconds}`);
+      setEndGame(true);
+    } else return;
+  };
+
+  useEffect(() => {
+    handleEndGame();
+  });
+
   if (width < 796) {
     return (
       <>
@@ -40,7 +53,7 @@ const PlayMenu = props => {
         <QuitBtn click={stopTimer} name="PAUSE" />
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
-        {solved.length === variant / 2 && <EndGame accept={accept} />}
+        {endGame && <EndGame accept={accept} />}
         {isConfirm && <Redirect to="/" />}
       </>
     );
@@ -53,20 +66,28 @@ const PlayMenu = props => {
         <QuitBtn click={stopTimer} name="PAUSE" />
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
-        {solved.length === variant / 2 && <EndGame accept={accept} />}
+        {solved.length === variant / 2 && (
+          <EndGame
+            accept={accept}
+            steps={steps}
+            minutes={minutes}
+            seconds={seconds}
+          />
+        )}
         {isConfirm && <Redirect to="/" />}
       </div>
     );
   }
 };
 const mapStateToProps = state => ({
-  step: state.user.step,
+  steps: state.user.step,
   solved: state.game.solved,
   variant: state.user.variant
 });
 const mapDispatchToProps = dispatch => ({
   clearLevel: () => dispatch(userActions.clearLevels()),
   clearFields: () => dispatch(gameActions.clearFields()),
+  setTime: value => dispatch(userActions.setTime(value)),
   toggleStart: () => dispatch(gameActions.toggleStart()),
   resetFlipped: () => dispatch(gameActions.resetFlipped()),
   resetSolved: () => dispatch(gameActions.resetSolved()),
