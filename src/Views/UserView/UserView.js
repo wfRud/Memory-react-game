@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Variations from "../../components/Form/Variation/Variation";
 import { gameActions } from "../../app/variations/duck";
 
-const Menu = props => {
+const UserView = props => {
   const { isLogged, setIsLogged, toggleStart, variant, start } = props;
 
   const handleStart = () => {
@@ -47,4 +47,4 @@ const mapStateToProps = state => ({
   isLogged: state.game.isLogged
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(UserView);

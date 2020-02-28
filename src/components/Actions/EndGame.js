@@ -12,7 +12,7 @@ const EndGame = props => {
           {minutes < 10 ? `0${minutes}` : minutes}:
           {seconds < 10 ? `0${seconds}` : seconds}
         </p>
-        <p className={styles.result}>{steps}STEPS </p>
+        <p className={styles.result}>{steps} STEPS </p>
         <h1 className={styles.text}>YOUR POSITION IS</h1>
         <p className={styles.result}>13</p>
         <div className={styles.buttons}>
