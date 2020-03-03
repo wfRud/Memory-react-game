@@ -14,7 +14,9 @@ const LoginForm = props => {
     userName,
     passwordError,
     setField,
+    setUserId,
     setNick,
+    setGamesAmount,
     clearFields,
     setIsLogged,
     setError
@@ -35,6 +37,8 @@ const LoginForm = props => {
       .then(resp => resp)
       .then(data => {
         if (data.data.isLogged) {
+          setUserId(Number(data.data.user_id));
+          setGamesAmount(data.data.games_amount);
           setIsLogged(true);
         } else {
           setIsLogged(false);
@@ -107,7 +111,9 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   setField: (item, value) => dispatch(gameActions.setField(item, value)),
+  setUserId: value => dispatch(userActions.setUserId(value)),
   setNick: value => dispatch(userActions.setNick(value)),
+  setGamesAmount: value => dispatch(userActions.setGamesAmount(value)),
   clearFields: () => dispatch(gameActions.clearFields()),
   setIsLogged: item => dispatch(gameActions.setIsLogged(item)),
   setError: (fieldError, error) =>

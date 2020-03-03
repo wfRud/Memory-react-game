@@ -3,27 +3,45 @@ import { Redirect } from "react-router-dom";
 import styles from "./UserView.module.scss";
 import { connect } from "react-redux";
 import Variations from "../../components/Form/Variation/Variation";
+import axios from "axios";
 import { gameActions } from "../../app/variations/duck";
 
 const UserView = props => {
-  const { isLogged, setIsLogged, toggleStart, variant, start } = props;
+  const {
+    isLogged,
+    setIsLogged,
+    toggleStart,
+    variant,
+    start,
+    user_id,
+    nick
+  } = props;
 
   const handleStart = () => {
     if (variant) {
       toggleStart(true);
     }
   };
-  const handLogout = () => {
-    setIsLogged(false);
+  const handleLogout = () => {
+    const userId = {
+      userId: user_id
+    };
+    axios
+      .post("/logout.php", userId)
+      .then(resp => resp)
+      .then(data => {
+        setIsLogged(data.data.isLogged);
+      })
+      .catch(error => console.log(error));
   };
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
-      <h2 className={styles.text}>Hello User</h2>
+      <h2 className={styles.text}>Hello {nick}</h2>
       <Variations />
       <div className={styles.button_wrapper}>
-        <button className={styles.actionButton} onClick={handLogout}>
+        <button className={styles.actionButton} onClick={handleLogout}>
           Logout
         </button>
 
@@ -42,8 +60,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  start: state.game.start,
+  user_id: state.user.user_id,
+  nick: state.user.nick,
   variant: state.user.variant,
+  start: state.game.start,
   isLogged: state.game.isLogged
 });
 

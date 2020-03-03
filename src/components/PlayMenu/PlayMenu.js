@@ -16,7 +16,7 @@ import Counter from "./Counter/Counter";
 import QuitBtn from "./QuitBtn/QuitBtn";
 
 const PlayMenu = props => {
-  const { solved, nick, variant, steps, setTime } = props;
+  const { solved, user_id, nick, variant, steps, gamesAmount, setTime } = props;
   const [endGame, setEndGame] = useState(false);
   const { stopTimer, startTimer, seconds, minutes, isRunning } = useStopWatch();
   const { isQuit, isConfirm, setIsQuit, accept, decline } = useQuit();
@@ -36,13 +36,15 @@ const PlayMenu = props => {
   const updateResults = async () => {
     const user = {
       nick: nick,
+      user_id: user_id,
       variant: variant,
       steps: steps,
-      time: `${minutes}:${seconds}`
+      time: `${minutes}:${seconds}`,
+      gamesAmount: gamesAmount
     };
 
     axios
-      .post("/update.php", user)
+      .post("/results.php", user)
       .then(resp => resp)
       .then(data => console.log(data))
       .catch(error => error);
@@ -53,13 +55,17 @@ const PlayMenu = props => {
       stopTimer();
       setTime(`${minutes}:${seconds}`);
       updateResults();
-      setEndGame(true);
     } else return;
   };
 
   useEffect(() => {
+    if (solved.length === variant / 2) {
+      setEndGame(true);
+    }
+  }, [solved.length, variant]);
+  useEffect(() => {
     handleEndGame();
-  });
+  }, [endGame]);
 
   if (width < 796) {
     return (
@@ -97,10 +103,12 @@ const PlayMenu = props => {
   }
 };
 const mapStateToProps = state => ({
+  user_id: state.user.user_id,
   nick: state.user.nick,
   steps: state.user.step,
   solved: state.game.solved,
-  variant: state.user.variant
+  variant: state.user.variant,
+  gamesAmount: state.user.gamesAmount
 });
 const mapDispatchToProps = dispatch => ({
   clearLevel: () => dispatch(userActions.clearLevels()),
