@@ -16,7 +16,7 @@ const Rank = () => {
   useEffect(() => {
     getRankList();
   }, []);
-  // console.log(result);
+
   const renderTableData = () => {
     if (result) {
       return result.map((user, index) => {
@@ -24,7 +24,7 @@ const Rank = () => {
 
         return (
           <tr className={styles.list_body_row} key={index}>
-            <td className={styles.list_body_item}>{index + 1}</td>
+            <td className={styles.list_body_item}>{index + 1}.</td>
             <td className={styles.list_body_item}>{nick}</td>
             <td className={styles.list_body_item}>{variant}</td>
             <td className={styles.list_body_item}>{steps}</td>
