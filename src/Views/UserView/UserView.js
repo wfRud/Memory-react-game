@@ -2,8 +2,9 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import styles from "./UserView.module.scss";
 import { connect } from "react-redux";
-import Variations from "../../components/Form/Variation/Variation";
 import PersonalRank from "../../components/PersonalRank/PersonalRank";
+import Variations from "../../components/Form/Variation/Variation";
+import Button from "../../components/Button/Button";
 import axios from "axios";
 import { gameActions } from "../../app/variations/duck";
 
@@ -43,13 +44,8 @@ const UserView = props => {
       <PersonalRank />
       <Variations />
       <div className={styles.button_wrapper}>
-        <button className={styles.actionButton} onClick={handleLogout}>
-          Logout
-        </button>
-
-        <button className={styles.actionButton} onClick={handleStart}>
-          Start
-        </button>
+        <Button value={"Logout"} action={handleLogout} />
+        <Button value={"Start"} action={handleStart} />
       </div>
       {!isLogged && <Redirect to="/" />}
       {start && <Redirect to="/gamePlay" />}

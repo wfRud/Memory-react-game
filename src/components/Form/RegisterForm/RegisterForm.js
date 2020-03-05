@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./RegisterForm.module.scss";
 import Input from "../Input/Input";
+import Button from "../../Button/Button";
 // import { userActions } from "../../../app/user/duck";
 import { gameActions } from "../../../app/variations/duck";
 import { connect } from "react-redux";
@@ -156,13 +157,11 @@ const Form = props => {
           errorMessage="passwords are different"
         />
         <div className={styles.button_wrapper}>
-          <button
-            type="submit"
-            className={styles.actionButton}
-            onClick={handleRegisterClick}
-          >
-            Register
-          </button>
+          <Button
+            type={"submit"}
+            action={handleRegisterClick}
+            value={"Register"}
+          />
 
           <Link className={styles.actionButton} to="/">
             Login

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../Input/Input";
+import Button from "../../Button/Button";
 import axios from "axios";
 import styles from "./LoginForm.module.scss";
 import { connect } from "react-redux";
@@ -86,9 +87,7 @@ const LoginForm = props => {
             Register
           </Link>
 
-          <button type="submit" className={styles.actionButton}>
-            Login
-          </button>
+          <Button type={"submit"} value={"Login"} />
 
           <Link to="/rank" className={styles.actionButton}>
             Rank

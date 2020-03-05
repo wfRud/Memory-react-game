@@ -25,43 +25,4 @@
             font-size: 86px;
         }
     }
-
-    .button_wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-
-        .actionButton {
-            width: 224px;
-            height: 79px;
-            margin: 0 35px;
-            text-align: center;
-            color: #fff;
-            font-size: 36px;
-            font-family: 'Asap', sans-serif;
-            background-color: #F9B9B7;
-            border: 0;
-            border-radius: 35px;
-            text-decoration: none;
-            line-height: 79px;
-            outline: none;
-            transition: .2s;
-
-            @media(min-width: 320px) and (max-width: 500px) {
-                width: 213px;
-                height: 45px;
-                margin: 0 15px;
-                padding: 0 15px;
-                font-size: 1.5em;
-            }
-
-            &:hover {
-                color: #F9B9B7;
-                background-color: #FFF;
-                cursor: pointer;
-                box-shadow: 0 0 0 6px #F9B9B7;
-            }
-        }
-    }
 }

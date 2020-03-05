@@ -13,7 +13,8 @@ import { useQuit } from "../../customHooks";
 import { useWindowDimensions } from "../../customHooks";
 import StopWatch from "./StopWatch/StopWatch";
 import Counter from "./Counter/Counter";
-import QuitBtn from "./QuitBtn/QuitBtn";
+// import QuitBtn from "./QuitBtn/QuitBtn";
+import Button from "../Button/Button";
 
 const PlayMenu = props => {
   const { solved, user_id, nick, variant, steps, gamesAmount, setTime } = props;
@@ -72,8 +73,10 @@ const PlayMenu = props => {
       <>
         <StopWatch minutes={minutes} seconds={seconds} />
         <Counter />
-        <QuitBtn click={setIsQuit} name="QUIT" />
-        <QuitBtn click={stopTimer} name="PAUSE" />
+        <Button action={setIsQuit} value={"QUIT"} />
+        <Button action={stopTimer} value={"PAUSE"} />
+        {/* <QuitBtn click={setIsQuit} name="QUIT" /> */}
+        {/* <QuitBtn click={stopTimer} name="PAUSE" /> */}
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
         {endGame && <EndGame accept={accept} />}
@@ -85,8 +88,10 @@ const PlayMenu = props => {
       <div className={styles.wrapper}>
         <StopWatch minutes={minutes} seconds={seconds} />
         <Counter />
-        <QuitBtn click={setIsQuit} name="QUIT" />
-        <QuitBtn click={stopTimer} name="PAUSE" />
+        <Button action={setIsQuit} value={"QUIT"} />
+        <Button action={stopTimer} value={"PAUSE"} />
+        {/* <QuitBtn click={setIsQuit} name="QUIT" />
+        <QuitBtn click={stopTimer} name="PAUSE" /> */}
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
         {solved.length === variant / 2 && (
