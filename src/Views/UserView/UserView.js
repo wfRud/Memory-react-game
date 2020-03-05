@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import styles from "./UserView.module.scss";
 import { connect } from "react-redux";
 import Variations from "../../components/Form/Variation/Variation";
+import PersonalRank from "../../components/PersonalRank/PersonalRank";
 import axios from "axios";
 import { gameActions } from "../../app/variations/duck";
 
@@ -38,7 +39,8 @@ const UserView = props => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
-      <h2 className={styles.text}>Hello {nick}</h2>
+      <h2 className={styles.text}>Hello {nick} !</h2>
+      <PersonalRank />
       <Variations />
       <div className={styles.button_wrapper}>
         <button className={styles.actionButton} onClick={handleLogout}>

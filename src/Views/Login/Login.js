@@ -5,7 +5,6 @@ import axios from "axios";
 import LoginForm from "../../components/Form/LoginForm/LoginForm";
 import { gameActions } from "../../app/variations/duck";
 import { userActions } from "../../app/user/duck";
-
 import styles from "./Login.module.scss";
 
 const Login = props => {
