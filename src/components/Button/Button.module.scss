@@ -14,12 +14,67 @@
     outline: none;
     transition: .2s;
 
+    &_panelControl {
+        width: 64%;
+        min-width: 160px;
+        height: 52px;
+        color: #fff;
+        background-color: #D6B3EB;
+        border: none;
+        border-radius: 35px;
+        font-size: 36px;
+        font-family: 'Asap', sans-serif;
+        outline: none;
+        transition: .2s;
+
+        &:hover {
+            color: #D6B3EB;
+            background-color: #FFF;
+            cursor: pointer;
+            box-shadow: 0 0 0 6px #D6B3EB;
+        }
+
+        @media(max-width: 1025px) and (min-width: 796px) {
+            font-size: 3vw;
+        }
+
+        @media(max-width: 795px) and (min-width: 320px) {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            max-width: 110px;
+            min-width: 0;
+            height: 42px;
+            font-size: 26px;
+
+            &_left {
+                position: absolute;
+                bottom: 5%;
+                left: 5%;
+                width: 64%;
+                max-width: 110px;
+                min-width: 0;
+                height: 52px;
+                font-size: 26px;
+                color: #fff;
+                background-color: #D6B3EB;
+                border: none;
+                border-radius: 35px;
+            }
+        }
+    }
+
     @media(min-width: 320px) and (max-width: 500px) {
         width: 213px;
         height: 45px;
         margin: 0 15px;
         padding: 0 15px;
         font-size: 1.5em;
+
+        &_left {
+            right: 0;
+            left: 5%
+        }
     }
 
     &:hover {

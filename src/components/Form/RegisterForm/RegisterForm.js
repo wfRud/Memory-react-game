@@ -161,6 +161,7 @@ const Form = props => {
             type={"submit"}
             action={handleRegisterClick}
             value={"Register"}
+            theme={"actionButton"}
           />
 
           <Link className={styles.actionButton} to="/">

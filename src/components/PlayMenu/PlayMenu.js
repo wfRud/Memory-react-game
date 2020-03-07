@@ -73,10 +73,16 @@ const PlayMenu = props => {
       <>
         <StopWatch minutes={minutes} seconds={seconds} />
         <Counter />
-        <Button action={setIsQuit} value={"QUIT"} />
-        <Button action={stopTimer} value={"PAUSE"} />
-        {/* <QuitBtn click={setIsQuit} name="QUIT" /> */}
-        {/* <QuitBtn click={stopTimer} name="PAUSE" /> */}
+        <Button
+          action={setIsQuit}
+          value={"QUIT"}
+          theme={"actionButton_panelControl"}
+        />
+        <Button
+          action={stopTimer}
+          value={"PAUSE"}
+          theme={"actionButton_panelControl_left"}
+        />
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
         {endGame && <EndGame accept={accept} />}
@@ -88,10 +94,16 @@ const PlayMenu = props => {
       <div className={styles.wrapper}>
         <StopWatch minutes={minutes} seconds={seconds} />
         <Counter />
-        <Button action={setIsQuit} value={"QUIT"} />
-        <Button action={stopTimer} value={"PAUSE"} />
-        {/* <QuitBtn click={setIsQuit} name="QUIT" />
-        <QuitBtn click={stopTimer} name="PAUSE" /> */}
+        <Button
+          action={setIsQuit}
+          value={"QUIT"}
+          theme={"actionButton_panelControl"}
+        />
+        <Button
+          action={stopTimer}
+          value={"PAUSE"}
+          theme={"actionButton_panelControl"}
+        />
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Actions accept={accept} decline={decline} />}
         {solved.length === variant / 2 && (

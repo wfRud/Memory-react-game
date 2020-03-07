@@ -87,7 +87,7 @@ const LoginForm = props => {
             Register
           </Link>
 
-          <Button type={"submit"} value={"Login"} />
+          <Button type={"submit"} value={"Login"} theme={"actionButton"} />
 
           <Link to="/rank" className={styles.actionButton}>
             Rank

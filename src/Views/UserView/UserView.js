@@ -44,8 +44,8 @@ const UserView = props => {
       <PersonalRank />
       <Variations />
       <div className={styles.button_wrapper}>
-        <Button value={"Logout"} action={handleLogout} />
-        <Button value={"Start"} action={handleStart} />
+        <Button value={"Logout"} action={handleLogout} theme={"actionButton"} />
+        <Button value={"Start"} action={handleStart} theme={"actionButton"} />
       </div>
       {!isLogged && <Redirect to="/" />}
       {start && <Redirect to="/gamePlay" />}
