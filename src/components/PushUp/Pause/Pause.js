@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Pause.module.scss";
-import SVGIcon from "../Tile/SVGIcon";
+import SVGIcon from "../../Tile/SVGIcon";
 
 const Pause = props => {
   const { dumpPause } = props;

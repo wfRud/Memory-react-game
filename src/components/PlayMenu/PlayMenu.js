@@ -4,16 +4,15 @@ import { connect } from "react-redux";
 import axios from "axios";
 import styles from "./PlayMenu.module.scss";
 import { userActions } from "../../app/user/duck";
-import { gameActions } from "../../app/variations/duck";
-import Actions from "../Actions/Actions";
-import Pause from "../Actions/Pause";
-import EndGame from "../Actions/EndGame";
+import { gameActions } from "../../app/game/duck";
+import Confirm from "../PushUp/Confirm/Confirm";
+import Pause from "../PushUp/Pause/Pause";
+import EndGame from "../PushUp/EndGame/EndGame";
 import { useStopWatch } from "../../customHooks";
 import { useQuit } from "../../customHooks";
 import { useWindowDimensions } from "../../customHooks";
 import StopWatch from "./StopWatch/StopWatch";
 import Counter from "./Counter/Counter";
-// import QuitBtn from "./QuitBtn/QuitBtn";
 import Button from "../Button/Button";
 
 const PlayMenu = props => {
@@ -84,7 +83,7 @@ const PlayMenu = props => {
           theme={"actionButton_panelControl_left"}
         />
         {!isRunning && <Pause dumpPause={startTimer} />}
-        {isQuit && <Actions accept={accept} decline={decline} />}
+        {isQuit && <Confirm accept={accept} decline={decline} />}
         {endGame && <EndGame accept={accept} />}
         {isConfirm && <Redirect to="/" />}
       </>
@@ -105,7 +104,7 @@ const PlayMenu = props => {
           theme={"actionButton_panelControl"}
         />
         {!isRunning && <Pause dumpPause={startTimer} />}
-        {isQuit && <Actions accept={accept} decline={decline} />}
+        {isQuit && <Confirm accept={accept} decline={decline} />}
         {solved.length === variant / 2 && (
           <EndGame
             accept={accept}

@@ -6,7 +6,7 @@ import axios from "axios";
 import styles from "./LoginForm.module.scss";
 import { connect } from "react-redux";
 import { userActions } from "../../../app/user/duck";
-import { gameActions } from "../../../app/variations/duck";
+import { gameActions } from "../../../app/game/duck";
 
 const LoginForm = props => {
   const {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import RegisterForm from "../../components/Form/RegisterForm/RegisterForm";
-import { gameActions } from "../../app/variations/duck";
+import { gameActions } from "../../app/game/duck";
 import styles from "./Register.module.scss";
 
 const Register = props => {
@@ -30,7 +30,7 @@ const Register = props => {
       <h2 className={styles.text}>
         {register ? "Your account has been opened" : "Set account and login"}
       </h2>
-      {register && <p>You will be redirect to login page automatycly</p>}
+      {register && <p>You will be redirect to login page</p>}
       <RegisterForm />
 
       {!seconds && <Redirect to="/" />}

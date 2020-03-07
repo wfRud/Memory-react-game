@@ -5,7 +5,7 @@ import styles from "./RegisterForm.module.scss";
 import Input from "../Input/Input";
 import Button from "../../Button/Button";
 // import { userActions } from "../../../app/user/duck";
-import { gameActions } from "../../../app/variations/duck";
+import { gameActions } from "../../../app/game/duck";
 import { connect } from "react-redux";
 
 const Form = props => {

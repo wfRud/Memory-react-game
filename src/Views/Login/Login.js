@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import LoginForm from "../../components/Form/LoginForm/LoginForm";
-import { gameActions } from "../../app/variations/duck";
+import { gameActions } from "../../app/game/duck";
 import { userActions } from "../../app/user/duck";
 import styles from "./Login.module.scss";
 

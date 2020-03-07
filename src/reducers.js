@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import variantReducer from "./app/variations/duck";
+import variantReducer from "./app/game/duck";
 import userReducer from "./app/user/duck";
 
 const rootReducer = combineReducers({

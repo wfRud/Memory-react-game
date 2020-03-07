@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { userActions } from "../../app/user/duck";
-import { gameActions } from "../../app/variations/duck";
+import { gameActions } from "../../app/game/duck";
 import styles from "./Tile.module.scss";
 import SVGIcon from "./SVGIcon";
 

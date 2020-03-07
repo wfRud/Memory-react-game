@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Actions.module.scss";
-import SVGIcon from "../Tile/SVGIcon";
-const Actions = props => {
+import styles from "./Confirm.module.scss";
+import SVGIcon from "../../Tile/SVGIcon";
+const Confirm = props => {
   const { accept, decline } = props;
   return (
     <div className={styles.wrapper}>
@@ -20,4 +20,4 @@ const Actions = props => {
   );
 };
 
-export default Actions;
+export default Confirm;

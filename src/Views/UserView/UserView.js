@@ -6,7 +6,7 @@ import PersonalRank from "../../components/PersonalRank/PersonalRank";
 import Variations from "../../components/Form/Variation/Variation";
 import Button from "../../components/Button/Button";
 import axios from "axios";
-import { gameActions } from "../../app/variations/duck";
+import { gameActions } from "../../app/game/duck";
 
 const UserView = props => {
   const {
