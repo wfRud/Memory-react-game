@@ -118,7 +118,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 60%;
 
         .actionButton {
             width: 224px;
@@ -150,6 +150,14 @@
                 cursor: pointer;
                 box-shadow: 0 0 0 6px #F9B9B7;
             }
+        }
+
+        @media (max-width: 761px) and (min-width: 475px) {
+            width: 80%;
+        }
+
+        @media (max-width: 474px) and (min-width: 320px) {
+            width: 100%;
         }
     }
 
