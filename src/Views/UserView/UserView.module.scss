@@ -16,11 +16,11 @@
         font-size: 96px;
         color: #F9B9B7;
 
-        @media(min-width: 320px)and(max-width: 499px) {
+        @media(max-width: 499px) and (min-width: 320px) {
             font-size: 76px
         }
 
-        @media(min-width: 500px)and(max-width: 789px) {
+        @media (max-width: 789px) and (min-width: 500px) {
             font-size: 86px;
         }
     }

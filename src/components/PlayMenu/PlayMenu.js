@@ -34,12 +34,15 @@ const PlayMenu = props => {
   });
 
   const updateResults = async () => {
+    // convert seconds to decimal format
+    const secondsAdj = seconds < 10 ? `0${seconds}` : seconds;
+    // Prepare userObj to DB send
     const user = {
       nick: nick,
       user_id: user_id,
       variant: variant,
       steps: steps,
-      time: `${minutes}:${seconds}`,
+      time: `${minutes}:${secondsAdj}`,
       gamesAmount: gamesAmount
     };
 
