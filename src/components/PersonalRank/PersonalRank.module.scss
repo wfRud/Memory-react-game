@@ -1,10 +1,14 @@
 .wrapper_list {
     width: 60%;
-    max-height: 240px;
+    min-height: 140px;
+    max-height: 300px;
+    border-radius: 25px;
+    box-shadow: 0 0 0 1px #f9b9b7, 10px 10px 47px -11px rgba(0, 0, 0, 0.75);
+    overflow: scroll;
 
     .text {
         font-size: 20px;
-        margin: 0 auto;
+        margin: 0 auto 15px auto;
         text-align: center;
     }
 
@@ -15,12 +19,11 @@
         text-align: left;
         padding-left: 10px;
         border-collapse: collapse;
-        border-radius: 25px;
         border-style: hidden;
-        box-shadow: 0 0 0 1px #F9B9B7, 10px 10px 47px -11px rgba(0, 0, 0, 0.75);
+
 
         .list_header {
-            background-color: rgba(#F9B9B7, 0.75);
+            background-color: rgba(#f9b9b7, 0.75);
             font-size: 20px;
 
             .list_header_item {
@@ -40,7 +43,7 @@
         .list_body {
             .list_body_row {
                 &:nth-child(odd) {
-                    background-color: rgba(255, 255, 255, .5);
+                    background-color: rgba(255, 255, 255, 0.5);
                 }
 
                 &:last-child {

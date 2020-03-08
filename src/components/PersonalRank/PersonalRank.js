@@ -36,27 +36,27 @@ const PersonalRank = () => {
     }
   };
   return (
-    <div className={styles.wrapper_list}>
-      {result.length > 0 ? (
-        <>
-          <p className={styles.text}>Your best results are below</p>
-          <table className={styles.list}>
-            <thead className={styles.list_header}>
-              <tr className={styles.list_header_row}>
-                <th className={styles.list_header_item}>Lp</th>
-                <th className={styles.list_header_item}>Nick</th>
-                <th className={styles.list_header_item}>Variant</th>
-                <th className={styles.list_header_item}>Steps</th>
-                <th className={styles.list_header_item}>Time</th>
-              </tr>
-            </thead>
-            <tbody className={styles.list_body}>{renderTableData()}</tbody>
-          </table>
-        </>
-      ) : (
+    <>
+      {result.length < 1 ? (
         <p className={styles.text}>It's your first time. Let's Play</p>
+      ) : (
+        <p className={styles.text}>Your best results are below</p>
       )}
-    </div>
+      <div className={styles.wrapper_list}>
+        <table className={styles.list}>
+          <thead className={styles.list_header}>
+            <tr className={styles.list_header_row}>
+              <th className={styles.list_header_item}>Lp</th>
+              <th className={styles.list_header_item}>Nick</th>
+              <th className={styles.list_header_item}>Variant</th>
+              <th className={styles.list_header_item}>Steps</th>
+              <th className={styles.list_header_item}>Time</th>
+            </tr>
+          </thead>
+          <tbody className={styles.list_body}>{renderTableData()}</tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
