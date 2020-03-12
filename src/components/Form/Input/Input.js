@@ -10,7 +10,8 @@ const Input = props => {
     inputValue,
     nameField,
     typeError,
-    errorMessage
+    errorMessage,
+    sendError
   } = props;
   return (
     <>
@@ -24,7 +25,7 @@ const Input = props => {
         onBlur={validFields}
         className={styles.inputsField}
       />
-      {typeError && inputValue !== "" ? (
+      {typeError ? (
         <div className={styles.errorMessage}>{errorMessage}</div>
       ) : null}
     </>

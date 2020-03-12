@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 
 const Form = props => {
   const [sendData, setSendData] = useState(false);
+  const [responseMessage, setResponseMessage] = useState(null);
+
   const {
     setError,
     nameError,
@@ -21,7 +23,6 @@ const Form = props => {
     userPassword,
     userPassword2,
     setField,
-    handleRegisterClick,
     clearFields,
     setRegister
   } = props;
@@ -38,6 +39,8 @@ const Form = props => {
       !passwordConfirmError
     ) {
       setSendData(true);
+    } else {
+      setSendData(false);
     }
   }, [
     userName,
@@ -68,8 +71,15 @@ const Form = props => {
         if (!data.data.error) {
           setRegister(true);
         } else {
-          console.log(data.data);
-          // ! display errors after response from host
+          const { error, errors } = data.data;
+
+          // Is nick or email exist ?
+          Object.keys(errors).map(key => {
+            return setError(errors[key].name, error);
+          });
+
+          //Get field's errors and errors messages
+          setResponseMessage(errors);
         }
       })
       .catch(error => console.log(error));
@@ -80,6 +90,17 @@ const Form = props => {
     e.preventDefault();
     if (sendData) {
       registerUser();
+    } else {
+      // Validate empty fields after register click button
+      if (userName === "") {
+        setError("nameError", true);
+      }
+      if (userEmail === "") {
+        setError("emailError", true);
+      }
+      if (userPassword === "") {
+        setError("passwordError", true);
+      }
     }
   };
 
@@ -97,7 +118,7 @@ const Form = props => {
           ? setError("emailError", false)
           : setError("emailError", true);
       } else if (e.target.name === "password") {
-        const passReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/;
+        const passReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,20}$/;
         passReg.test(e.target.value)
           ? setError("passwordError", false)
           : setError("passwordError", true);
@@ -121,7 +142,11 @@ const Form = props => {
           autoComplete="off"
           validFields={validFields}
           typeError={nameError}
-          errorMessage="Name should starts from Big letter and has minimum 4 letters"
+          errorMessage={
+            responseMessage
+              ? responseMessage.nick_e.message
+              : "Name should starts from Big letter and has minimum 4 letters"
+          }
         />
         <Input
           inputType="text"
@@ -132,7 +157,9 @@ const Form = props => {
           autoComplete="off"
           validFields={validFields}
           typeError={emailError}
-          errorMessage="Invalid Email"
+          errorMessage={
+            responseMessage ? responseMessage.email_e.message : "Invalid Email"
+          }
         />
         <Input
           inputType="password"
@@ -157,12 +184,7 @@ const Form = props => {
           errorMessage="passwords are different"
         />
         <div className={styles.button_wrapper}>
-          <Button
-            type={"submit"}
-            action={handleRegisterClick}
-            value={"Register"}
-            theme={"actionButton"}
-          />
+          <Button type={"submit"} value={"Register"} theme={"actionButton"} />
 
           <Link className={styles.actionButton} to="/">
             Login
