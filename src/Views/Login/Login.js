@@ -34,11 +34,7 @@ const Login = props => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
-      <h2 className={styles.text}>
-        {isLogged
-          ? "Hello User in a moment you will be redirected to choose the level of difficulty "
-          : "Login and start game"}
-      </h2>
+      <h2 className={styles.text}>"Login and start game"</h2>
       <LoginForm />
       {isLogged && <Redirect to="/userView" />}
     </div>

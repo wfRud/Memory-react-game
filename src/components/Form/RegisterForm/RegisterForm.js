@@ -70,6 +70,7 @@ const Form = props => {
       .then(data => {
         if (!data.data.error) {
           setRegister(true);
+          console.log(data.data);
         } else {
           const { error, errors } = data.data;
 

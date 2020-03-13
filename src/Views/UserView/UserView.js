@@ -43,7 +43,7 @@ const UserView = props => {
       <h1 className={styles.title}>MEMORY</h1>
       <h2 className={styles.text}>Hello {nick} !</h2>
       <p className={styles.text}>You've played {gamesAmount} times so far</p>
-      <PersonalRank />
+      {gamesAmount < 1 ? null : <PersonalRank />}
       <Variations />
       <div className={styles.button_wrapper}>
         <Button value={"Logout"} action={handleLogout} theme={"actionButton"} />
