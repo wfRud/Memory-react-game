@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const Form = props => {
   const [sendData, setSendData] = useState(false);
-  const [responseMessage, setResponseMessage] = useState(null);
+  const [responseMessage, setResponseMessage] = useState({});
 
   const {
     setError,
@@ -143,7 +143,7 @@ const Form = props => {
           validFields={validFields}
           typeError={nameError}
           errorMessage={
-            responseMessage
+            responseMessage.nick_e
               ? responseMessage.nick_e.message
               : "Name should starts from Big letter and has minimum 4 letters"
           }
@@ -158,7 +158,9 @@ const Form = props => {
           validFields={validFields}
           typeError={emailError}
           errorMessage={
-            responseMessage ? responseMessage.email_e.message : "Invalid Email"
+            responseMessage.email_e
+              ? responseMessage.email_e.message
+              : "Invalid Email"
           }
         />
         <Input

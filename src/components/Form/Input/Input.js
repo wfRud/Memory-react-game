@@ -10,8 +10,7 @@ const Input = props => {
     inputValue,
     nameField,
     typeError,
-    errorMessage,
-    sendError
+    errorMessage
   } = props;
   return (
     <>

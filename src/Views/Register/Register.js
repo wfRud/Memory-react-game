@@ -7,7 +7,7 @@ import styles from "./Register.module.scss";
 
 const Register = props => {
   const { register, setRegister } = props;
-  const [seconds, setSeconds] = useState(3);
+  const [seconds, setSeconds] = useState(2);
 
   useEffect(() => {
     if (register) {
@@ -30,7 +30,7 @@ const Register = props => {
       <h2 className={styles.text}>
         {register ? "Your account has been opened" : "Set account and login"}
       </h2>
-      {register && <p>You will be redirect to login page</p>}
+      {register && <p>You will be redirect to login page {seconds}</p>}
       <RegisterForm />
 
       {!seconds && <Redirect to="/" />}

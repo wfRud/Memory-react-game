@@ -37,14 +37,15 @@ const LoginForm = props => {
       .post("/login.php", user)
       .then(resp => resp)
       .then(data => {
-        if (data.data.isLogged) {
-          setUserId(Number(data.data.user_id));
-          setGamesAmount(data.data.games_amount);
+        const { games_amount, user_id, name, isLogged } = data.data;
+        if (isLogged) {
+          setUserId(Number(user_id));
+          setGamesAmount(games_amount);
           setIsLogged(true);
+          setError("nameError", false);
         } else {
           setIsLogged(false);
-          setError(data.data.name, true);
-          console.log(data.data);
+          setError(name, true);
         }
       })
       .catch(error => error);

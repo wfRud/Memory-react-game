@@ -16,7 +16,8 @@ const UserView = props => {
     variant,
     start,
     user_id,
-    nick
+    nick,
+    gamesAmount
   } = props;
 
   const handleStart = () => {
@@ -41,6 +42,7 @@ const UserView = props => {
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
       <h2 className={styles.text}>Hello {nick} !</h2>
+      <p className={styles.text}>You've played {gamesAmount} times so far</p>
       <PersonalRank />
       <Variations />
       <div className={styles.button_wrapper}>
@@ -62,7 +64,8 @@ const mapStateToProps = state => ({
   nick: state.user.nick,
   variant: state.user.variant,
   start: state.game.start,
-  isLogged: state.game.isLogged
+  isLogged: state.game.isLogged,
+  gamesAmount: state.user.gamesAmount
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserView);
