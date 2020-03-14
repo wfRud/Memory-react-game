@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MEMORY app
 
-## Available Scripts
+Aplikacja webowa popularnej gry MEMORY.
+Celem gry jest odnalezienie wszystkich par takich samych kart, przy możliwie najmniejszej liczbie odsłon i jak najkrótszym czasie.
+Przygotowane są 3 poziomy trudności.
 
-In the project directory, you can run:
+## Demo aplikacji:
 
-### `npm start`
+[wfrud.pl](https://www.wfrud.pl/)<br/>
+Login: User<br/>
+Hasło: user12345
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Użyte technologie
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<img src="screens/technologies.png" width="600" />
 
-### `npm test`
+### Opis i Prezentacja
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Memory app składa się z 5 komponentów widoku:
 
-### `npm run build`
+- Rejestracja,
+- Logowanie,
+- Panel Użytkownika,
+- Plansza Gry,
+- Ranking
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## _1.Rejestracja_
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+W celu rejestracji należy wypełnić formularz, który jest walidowany po stronie klienta z pomocą wyrażen regularnych, tak aby zapobiedz wysłaniu formularza z pustym lub źle wypełnionym polem.<br/>
+Po wciśnieciu przycisku "Register", formularz jest wysyłany za pomocą biblioteki Axios do bazy danych, gdzie po stronie serwera skrypt PHP sprawdza ponownie poprawność wypełnioncyh pól oraz czy istnieje już User o podanym nicku.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="screens/Register-case1.gif" width="100%"  />
 
-### `npm run eject`
+Informacja o istniejącym koncie zawięrającym taki sam nick lub email zostaje zwrócona przez serwer i wyświetlona pod odpowiednim inputem.
+Jeżeli formularz został zwalidowany poprawnie na podstawie odpowiedzi z serwera User zostaje przeniesiony do widoku Login z pomocą React Router.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="screens/Register-case2.gif" width="100%"  />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## _2.Logowanie_
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Formularz logowania jest walidowany aby zapobiec wysłaniu pustych pól, w przypadku nie podania nicku lub hasła, badź wpisania niepoprawnego loginu lub hasła zostaje zwrócona informacja z serwera i wyświetlona pod inputem.<br/> W momencie poprawnego zalogowanie się do aplikacji, user zostaje przeniesiony do widoku użytkownika.<br/>
+<img src="screens/Login-case1.gif" width="100%"  />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## _3.Panel uzytkownika_
 
-## Learn More
+Panel uzytkownika zawiera 3 dostępne warianty rozgrywki.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="screens/UserView-1%208.gif" width="100%"  />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Jeżeli nie jest to pierwsza rozgrywka wyświetlana jest tabela z wynikami.
 
-### Code Splitting
+[zdjęcie z wynikami gracza]
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Po wybraniu odpowiedniego wariantu i wciśnięciu przycisku start, użytkownik zostaję przeniesiony do planszy gry.
 
-### Analyzing the Bundle Size
+## _4.Plansza Gry_
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Komponent planszy gry składa się z dwóch subkomponentów:
 
-### Making a Progressive Web App
+- Planszy,
+- Menu rozgrywki
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Wielkośc planszy renderowana jest na podstawie wybranego wariantu gry. Menu Rozgrywki składa się Timera i Licznika ruchów oraz dwóch buttonów wyjścia i pauzy.
+Użytkownik klikając na wybrany kafelek odsłania obrazek, klikając na kolejny próbuje odnaleźć podobny obrazek. Jeżeli obrazki nie pasują po 2 sekundach zostają ponownie zasłonięte.
 
-### Advanced Configuration
+<img src="screens/GamePlay-case1.gif" width="100%"  />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Gra kończy się w momencie odsłonięcia wszystkich kafelków, o czym gracz zostaje poinformowanych wyskakującym okienkiem push-up zawierającym czas oraz liczbę kroków.
 
-### Deployment
+<img src="screens/PushUp-1%200.gif" width="100%"  />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## _5.Ranking_
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Komponent ma na celu zaprezentowanie wyników wszystkich graczy, zaraz po wyrenderowaniu komponent za pomocą hooka useEffect() wysyła zapytanie do serwera, zwrócone dane są posortowane rozsnąco i zaprezentowane w tabeli.
+[gif rankingu]

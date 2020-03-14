@@ -34,7 +34,7 @@ const Login = props => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>MEMORY</h1>
-      <h2 className={styles.text}>"Login and start game"</h2>
+      <h2 className={styles.text}>Login and start game</h2>
       <LoginForm />
       {isLogged && <Redirect to="/userView" />}
     </div>
