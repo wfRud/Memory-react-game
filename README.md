@@ -45,7 +45,7 @@ Formularz logowania jest walidowany aby zapobiec wysłaniu pustych pól, w przyp
 
 Panel uzytkownika zawiera 3 dostępne warianty rozgrywki.
 
-<img src="screens/UserView-1.gif" width="100%"  />
+<img src="screens/UserView-1.png" width="100%"  />
 
 Jeżeli nie jest to pierwsza rozgrywka wyświetlana jest tabela z wynikami.
 
@@ -67,7 +67,7 @@ Użytkownik klikając na wybrany kafelek odsłania obrazek, klikając na kolejny
 
 Gra kończy się w momencie odsłonięcia wszystkich kafelków, o czym gracz zostaje poinformowanych wyskakującym okienkiem push-up zawierającym czas oraz liczbę kroków.
 
-<img src="screens/PushUp-1.gif" width="100%"  />
+<img src="screens/PushUp-1.png" width="100%"  />
 
 ## _5.Ranking_
 
