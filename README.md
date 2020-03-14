@@ -8,7 +8,7 @@ Przygotowane są 3 poziomy trudności.
 
 [wfrud.pl](https://www.wfrud.pl/)<br/>
 Login: User<br/>
-Hasło: user12345
+Hasło: User12345
 
 ### Użyte technologie
 
@@ -45,11 +45,11 @@ Formularz logowania jest walidowany aby zapobiec wysłaniu pustych pól, w przyp
 
 Panel uzytkownika zawiera 3 dostępne warianty rozgrywki.
 
-<img src="screens/UserView-1%208.gif" width="100%"  />
+<img src="screens/UserView-1.gif" width="100%"  />
 
 Jeżeli nie jest to pierwsza rozgrywka wyświetlana jest tabela z wynikami.
 
-[zdjęcie z wynikami gracza]
+<img src="screens/UserResults.png" width="100%"  />
 
 Po wybraniu odpowiedniego wariantu i wciśnięciu przycisku start, użytkownik zostaję przeniesiony do planszy gry.
 
@@ -67,9 +67,9 @@ Użytkownik klikając na wybrany kafelek odsłania obrazek, klikając na kolejny
 
 Gra kończy się w momencie odsłonięcia wszystkich kafelków, o czym gracz zostaje poinformowanych wyskakującym okienkiem push-up zawierającym czas oraz liczbę kroków.
 
-<img src="screens/PushUp-1%200.gif" width="100%"  />
+<img src="screens/PushUp-1.gif" width="100%"  />
 
 ## _5.Ranking_
 
 Komponent ma na celu zaprezentowanie wyników wszystkich graczy, zaraz po wyrenderowaniu komponent za pomocą hooka useEffect() wysyła zapytanie do serwera, zwrócone dane są posortowane rozsnąco i zaprezentowane w tabeli.
-[gif rankingu]
+<img src="screens/Rank.png" width="100%"  />
