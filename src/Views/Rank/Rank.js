@@ -7,7 +7,7 @@ const Rank = () => {
   const [result, setResult] = useState([]);
   const getRankList = () => {
     axios
-      .get("./rank.php")
+      .get("/memory/rank.php")
       .then(resp => resp)
       .then(data => setResult(data.data))
       .catch(error => console.log(error));
@@ -56,10 +56,10 @@ const Rank = () => {
         </table>
       </div>
       <div className={styles.button_wrapper}>
-        <Link to="/register" className={styles.actionButton}>
+        <Link to="/memory/register" className={styles.actionButton}>
           Register
         </Link>
-        <Link to="/" className={styles.actionButton}>
+        <Link to="/memory" className={styles.actionButton}>
           Login
         </Link>
       </div>

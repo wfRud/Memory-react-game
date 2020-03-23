@@ -47,7 +47,7 @@ const PlayMenu = props => {
     };
 
     axios
-      .post("/results.php", user)
+      .post("/memory/results.php", user)
       .then(resp => resp)
       .then(data => console.log(data))
       .catch(error => error);
@@ -88,7 +88,7 @@ const PlayMenu = props => {
         {!isRunning && <Pause dumpPause={startTimer} />}
         {isQuit && <Confirm accept={accept} decline={decline} />}
         {endGame && <EndGame accept={accept} />}
-        {isConfirm && <Redirect to="/" />}
+        {isConfirm && <Redirect to="/memory" />}
       </>
     );
   } else {
@@ -116,7 +116,7 @@ const PlayMenu = props => {
             seconds={seconds}
           />
         )}
-        {isConfirm && <Redirect to="/" />}
+        {isConfirm && <Redirect to="/memory" />}
       </div>
     );
   }

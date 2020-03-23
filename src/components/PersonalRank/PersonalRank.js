@@ -6,7 +6,7 @@ const PersonalRank = () => {
   const [result, setResult] = useState([]);
   const getRankList = () => {
     axios
-      .get("./rank.php")
+      .get("/memory/rank.php")
       .then(resp => resp)
       .then(data => setResult(data.data))
       .catch(error => console.log(error));

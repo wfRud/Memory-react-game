@@ -30,7 +30,7 @@ const UserView = props => {
       userId: user_id
     };
     axios
-      .post("/logout.php", userId)
+      .post("/memory/logout.php", userId)
       .then(resp => resp)
       .then(data => {
         setIsLogged(data.data.isLogged);
@@ -49,8 +49,8 @@ const UserView = props => {
         <Button value={"Logout"} action={handleLogout} theme={"actionButton"} />
         <Button value={"Start"} action={handleStart} theme={"actionButton"} />
       </div>
-      {!isLogged && <Redirect to="/" />}
-      {start && <Redirect to="/gamePlay" />}
+      {!isLogged && <Redirect to="/memory" />}
+      {start && <Redirect to="/memory/gamePlay" />}
     </div>
   );
 };

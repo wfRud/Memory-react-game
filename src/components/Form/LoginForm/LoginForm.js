@@ -34,7 +34,7 @@ const LoginForm = props => {
       password: userPassword
     };
     await axios
-      .post("/login.php", user)
+      .post("/memory/login.php", user)
       .then(resp => resp)
       .then(data => {
         const { games_amount, user_id, name, isLogged } = data.data;
@@ -84,13 +84,13 @@ const LoginForm = props => {
         />
 
         <div className={styles.button_wrapper}>
-          <Link to="/register" className={styles.actionButton}>
+          <Link to="/memory/register" className={styles.actionButton}>
             Register
           </Link>
 
           <Button type={"submit"} value={"Login"} theme={"actionButton"} />
 
-          <Link to="/rank" className={styles.actionButton}>
+          <Link to="/memory/rank" className={styles.actionButton}>
             Rank
           </Link>
         </div>

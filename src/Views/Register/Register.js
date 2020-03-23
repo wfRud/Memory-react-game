@@ -33,7 +33,7 @@ const Register = props => {
       {register && <p>You will be redirect to login page {seconds}</p>}
       <RegisterForm />
 
-      {!seconds && <Redirect to="/" />}
+      {!seconds && <Redirect to="/memory" />}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Login = props => {
 
   const checkIsLogged = () => {
     axios
-      .get("/login.php")
+      .get("/memory/login.php")
       .then(resp => resp)
       .then(data => {
         if (data.data.isLogged) {
@@ -36,7 +36,7 @@ const Login = props => {
       <h1 className={styles.title}>MEMORY</h1>
       <h2 className={styles.text}>Login and start game</h2>
       <LoginForm />
-      {isLogged && <Redirect to="/userView" />}
+      {isLogged && <Redirect to="/memory/userView" />}
     </div>
   );
 };

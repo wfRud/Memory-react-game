@@ -65,7 +65,7 @@ const Form = props => {
       password2: userPassword2
     };
     await axios
-      .post("/register.php", user)
+      .post("/memory/register.php", user)
       .then(resp => resp)
       .then(data => {
         if (!data.data.error) {
@@ -189,11 +189,11 @@ const Form = props => {
         <div className={styles.button_wrapper}>
           <Button type={"submit"} value={"Register"} theme={"actionButton"} />
 
-          <Link className={styles.actionButton} to="/">
+          <Link className={styles.actionButton} to="/memory">
             Login
           </Link>
 
-          <Link className={styles.actionButton} to="/rank">
+          <Link className={styles.actionButton} to="/memory/rank">
             Rank
           </Link>
         </div>
