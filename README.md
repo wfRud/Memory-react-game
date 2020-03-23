@@ -6,7 +6,7 @@ Przygotowane są 3 poziomy trudności.
 
 ## Demo aplikacji:
 
-[wfrud.pl](https://www.wfrud.pl/)<br/>
+[wfrud.pl](https://www.wfrud.pl/memory)<br/>
 Login: User<br/>
 Hasło: User12345
 
